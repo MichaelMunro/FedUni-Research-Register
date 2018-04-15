@@ -27,13 +27,15 @@ CREATE TABLE Users
 CREATE TABLE Major
 (
     major_id INT PRIMARY KEY AUTO_INCREMENT,
-    major_name VARCHAR(100) NOT NULL
+    major_name VARCHAR(100) NOT NULL,
+    major_description VARCHAR(250)
 );
 
 CREATE TABLE Minor
 (
     minor_id INT PRIMARY KEY AUTO_INCREMENT,
-    minor_name VARCHAR(100) NOT NULL
+    minor_name VARCHAR(100) NOT NULL,
+    minor_description VARCHAR(250)
 );
 -- I'm assuming that many users can have multiple degrees and degrees can have multiple users and grees can have multiple majors and minors--
 CREATE TABLE Degree
@@ -74,5 +76,13 @@ CREATE TABLE Profile
    Worked Boolean,
    FOREIGN KEY (users_id) REFERENCES Users(user_id),
    FOREIGN KEY (degree_id) REFERENCES Degree(degree_id) 
+);
+
+CREATE TABLE Message
+(
+    messgae_id INT PRIMARY KEY AUTO_INCREMENT,
+    message_title VARCHAR(20) NOT NULL,
+    message_description VARCHAR(250) NOT NULL
+
 );
 

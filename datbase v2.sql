@@ -14,8 +14,12 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 CREATE TABLE Users
 (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(60) NOT NULL,
+    title VARCHAR(5) NOT NULL, -- Mr/Mrs/Miss/Dr etc.
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(40) NOT NULL,
     email VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(13) NOT NULL,
     password VARCHAR(255) NOT NULL,
    -- permisison can be (0) for standard (1) for admin (2) for super admin
     permission INT NOT NULL
@@ -38,10 +42,10 @@ CREATE TABLE Minor
     minor_description VARCHAR(250)
 );
 -- I'm assuming that many users can have multiple degrees and degrees can have multiple users and grees can have multiple majors and minors--
-CREATE TABLE Degree
+CREATE TABLE Qualification
 (
-    degree_id INT PRIMARY KEY AUTO_INCREMENT,
-    degree_name VARCHAR(100) NOT NULL,
+    qualification_id INT PRIMARY KEY AUTO_INCREMENT,
+    qualification_name VARCHAR(100) NOT NULL,
     majors_id INT,
     minors_id INT,
     Uni VARCHAR(100),
@@ -69,13 +73,13 @@ CREATE TABLE Keyword_Assignment
 CREATE TABLE Profile 
 (
    profile_id INT PRIMARY KEY AUTO_INCREMENT,
-   degree_id INT,
+   qualification_id INT,
    users_id INT,
    IT_Skills Boolean,
    -- Can make multiple fields
    Worked Boolean,
    FOREIGN KEY (users_id) REFERENCES Users(user_id),
-   FOREIGN KEY (degree_id) REFERENCES Degree(degree_id) 
+   FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id) 
 );
 
 CREATE TABLE Message
@@ -86,3 +90,27 @@ CREATE TABLE Message
 
 );
 
+CREATE TABLE Skills
+(
+    skill_id INT PRIMARY KEY AUTO_INCREMENT,
+    skill_name VARCHAR(100) NOT NULL,
+    skill_level VARCHAR(10) NOT NULL, --high medium low
+    skill_type VARCHAR(20)
+);
+
+CREATE TABLE file
+(
+    file_id INT PRIMARY KEY AUTO_INCREMENT,
+    file_name VARCHAR(100) NOT NULL,
+    file_location VARCHAR(200) NOT NULL,
+    file_size INT NOT NULL
+);
+
+CREATE TABLE User_Skills
+(
+    user_id INT,
+    skill_id INT,
+    PRIMARY KEY(user_id,skill_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
+)

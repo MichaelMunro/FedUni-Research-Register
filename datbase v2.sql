@@ -70,24 +70,42 @@ CREATE TABLE Keyword_Assignment
 );
 
 -- Links it all together
-CREATE TABLE Profile 
+CREATE TABLE Profiles 
 (
    profile_id INT PRIMARY KEY AUTO_INCREMENT,
    qualification_id INT,
    users_id INT,
-   IT_Skills Boolean,
-   -- Can make multiple fields
    Worked Boolean,
    FOREIGN KEY (users_id) REFERENCES Users(user_id),
    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id) 
 );
 
-CREATE TABLE Message
+CREATE TABLE Messages
 (
-    messgae_id INT PRIMARY KEY AUTO_INCREMENT,
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
     message_title VARCHAR(20) NOT NULL,
     message_description VARCHAR(250) NOT NULL
 
+);
+CREATE TABLE Employment
+(
+    employment_id INT PRIMARY KEY AUTO_INCREMENT,
+    organisation VARCHAR(50),
+    position_type VARCHAR(50),
+    startDate DATETIME,
+    endDate DATETIME,
+    tasks VARCHAR(250)
+
+);
+
+CREATE TABLE Fed_Employment
+(
+    fed_employment_id INT PRIMARY KEY AUTO_INCREMENT,
+    manager VARCHAR(50),
+    position_type VARCHAR(50),
+    startDate DATETIME,
+    endDate DATETIME,
+    tasks VARCHAR(250)
 );
 
 CREATE TABLE Skills
@@ -98,7 +116,7 @@ CREATE TABLE Skills
     skill_type VARCHAR(20)
 );
 
-CREATE TABLE file
+CREATE TABLE files
 (
     file_id INT PRIMARY KEY AUTO_INCREMENT,
     file_name VARCHAR(100) NOT NULL,
@@ -113,4 +131,44 @@ CREATE TABLE User_Skills
     PRIMARY KEY(user_id,skill_id)
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
-)
+);
+
+INSERT INTO Skills(skill_name,skill_level,skill_type)
+(
+    ("Use of normal Microsoft range of programs","Medium","General"),
+    ("Written English","Low","General"),
+    ("Spoken English","Medium","General"),
+    ("Organising Meetings","Medium","General"),
+    ("Dealing with external stakeholders","High","General"),
+    ("Managing Work Tasks","Medium","General"),
+    ("Project Management","Low","General"),
+
+    ("Preparing Ethics Applications","Medium","Research"),
+    ("Literature Searches","Low","Research"),
+    ("Writing Literature Reviews","Medium","Research"),
+    ("Referencing Skills","Medium","Research"),
+    ("Contributing to the writing of papers","High","Research"),
+    ("Contributing to the preparation of presentations","Medium","Research"),
+    ("Contributing to the preparation of reports","High","Research"),
+    ("Assisting with grant applications","Medium","Research"),
+    ("Maintaining accurate project records","Low","Research"),
+    ("Keeping Project Budget Records","Medium","Research"),
+    ("Taking notes and writing minutes from project meetings","Medium","Research"),
+    ("Recruiting participants","High","Research"),
+    ("Interviewing face to face","Medium","Research"),
+    ("Interviewing by phone","Low","Research"),
+    ("Survey Design and Development","Medium","Research"),
+    ("Preparing on-line surveys","High","Research"),
+    ("Data Analysis-Qualitative","Medium","Research"),
+    ("Data Analysis-Quantitative","Low","Research"),
+
+    ("Systematic Reviews of Literature","Low","Psychology"),
+    ("Manuscript Drifting","High","Psychology"),
+    ("Participant Recruitment","Medium","Psychology"),
+    ("Psychology lab skills","Low","Psychology"),
+    ("Therapy Work","Medium","Psychology"),
+    ("Other","High","Psychology")
+);
+
+
+

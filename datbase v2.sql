@@ -68,25 +68,6 @@ CREATE TABLE Keyword_Assignment
     FOREIGN KEY (users_id) REFERENCES Users(user_id),
     FOREIGN KEY (keywords_id) REFERENCES Keyword(keyword_id)
 );
-
--- Links it all together
-CREATE TABLE Profiles 
-(
-   profile_id INT PRIMARY KEY AUTO_INCREMENT,
-   qualification_id INT,
-   users_id INT,
-   Worked Boolean,
-   FOREIGN KEY (users_id) REFERENCES Users(user_id),
-   FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id) 
-);
-
-CREATE TABLE Messages
-(
-    message_id INT PRIMARY KEY AUTO_INCREMENT,
-    message_title VARCHAR(20) NOT NULL,
-    message_description VARCHAR(250) NOT NULL
-
-);
 CREATE TABLE Employment
 (
     employment_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -102,11 +83,37 @@ CREATE TABLE Fed_Employment
 (
     fed_employment_id INT PRIMARY KEY AUTO_INCREMENT,
     manager VARCHAR(50),
+    phone_number VARCHAR(13) NOT NULL
     position_type VARCHAR(50),
     startDate DATETIME,
     endDate DATETIME,
     tasks VARCHAR(250)
 );
+
+-- Links it all together
+CREATE TABLE Profiles 
+(
+   profile_id INT PRIMARY KEY AUTO_INCREMENT,
+   qualification_id INT,
+   users_id INT,
+   employment_id INT,
+   fed_employment_id INT,
+   FOREIGN KEY (users_id) REFERENCES Users(user_id),
+   FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id), 
+   FOREIGN KEY (employment_id) REFERENCES Employment(employment_id),
+   FOREIGN KEY (fed_employment_id) REFERENCES Fed_Employment(fed_employment_id)
+
+);
+
+
+CREATE TABLE Messages
+(
+    message_id INT PRIMARY KEY AUTO_INCREMENT,
+    message_title VARCHAR(20) NOT NULL,
+    message_description VARCHAR(250) NOT NULL
+
+);
+
 
 CREATE TABLE Skills
 (

@@ -16,11 +16,15 @@ CREATE TABLE Users
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(5) NOT NULL, -- Mr/Mrs/Miss/Dr etc.
     first_name VARCHAR(20) NOT NULL,
+    middle_name VARCHAR(40) NOT NULL,
     last_name VARCHAR(40) NOT NULL,
     email VARCHAR(100) NOT NULL,
     address VARCHAR(100) NOT NULL,
     phone_number VARCHAR(13) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    day_dob INT NOT NULL,
+    month_dob INT NOT NULL,
+    year_dob INT NOT NULL,
    -- permisison can be (0) for standard (1) for admin (2) for super admin
     permission INT NOT NULL
 );

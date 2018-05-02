@@ -23,7 +23,7 @@ CREATE TABLE Users
     phone_number VARCHAR(13) NOT NULL,
     password VARCHAR(255) NOT NULL,
     day_dob INT NOT NULL,
-    month_dob INT NOT NULL,
+    month_dob VARCHAR(15) NOT NULL,
     year_dob INT NOT NULL,
    -- permisison can be (0) for standard (1) for admin (2) for super admin
     permission INT NOT NULL

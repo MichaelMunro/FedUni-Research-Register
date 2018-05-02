@@ -83,13 +83,19 @@ CREATE TABLE Fed_Employment
 (
     fed_employment_id INT PRIMARY KEY AUTO_INCREMENT,
     manager VARCHAR(50),
-    phone_number VARCHAR(13) NOT NULL
+    phone_number VARCHAR(13) NOT NULL,
     position_type VARCHAR(50),
     startDate DATETIME,
     endDate DATETIME,
     tasks VARCHAR(250)
 );
-
+CREATE TABLE files
+(
+    file_id INT PRIMARY KEY AUTO_INCREMENT,
+    file_name VARCHAR(100) NOT NULL,
+    file_location VARCHAR(200) NOT NULL,
+    file_size INT NOT NULL
+);
 -- Links it all together
 CREATE TABLE Profiles 
 (
@@ -98,10 +104,12 @@ CREATE TABLE Profiles
    users_id INT,
    employment_id INT,
    fed_employment_id INT,
+   file_id INT,
    FOREIGN KEY (users_id) REFERENCES Users(user_id),
    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id), 
    FOREIGN KEY (employment_id) REFERENCES Employment(employment_id),
-   FOREIGN KEY (fed_employment_id) REFERENCES Fed_Employment(fed_employment_id)
+   FOREIGN KEY (fed_employment_id) REFERENCES Fed_Employment(fed_employment_id),
+   FOREIGN Key (file_id) REFERENCES files(file_id)
 
 );
 
@@ -119,29 +127,23 @@ CREATE TABLE Skills
 (
     skill_id INT PRIMARY KEY AUTO_INCREMENT,
     skill_name VARCHAR(100) NOT NULL,
-    skill_level VARCHAR(10) NOT NULL, --high medium low
+    skill_level VARCHAR(10) NOT NULL, 
     skill_type VARCHAR(20)
 );
 
-CREATE TABLE files
-(
-    file_id INT PRIMARY KEY AUTO_INCREMENT,
-    file_name VARCHAR(100) NOT NULL,
-    file_location VARCHAR(200) NOT NULL,
-    file_size INT NOT NULL
-);
+
 
 CREATE TABLE User_Skills
 (
     user_id INT,
     skill_id INT,
-    PRIMARY KEY(user_id,skill_id)
+    PRIMARY KEY(user_id,skill_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
 );
 
-INSERT INTO Skills(skill_name,skill_level,skill_type)
-(
+INSERT INTO Skills(skill_name,skill_level,skill_type) VALUES
+
     ("Use of normal Microsoft range of programs","Medium","General"),
     ("Written English","Low","General"),
     ("Spoken English","Medium","General"),
@@ -174,8 +176,7 @@ INSERT INTO Skills(skill_name,skill_level,skill_type)
     ("Participant Recruitment","Medium","Psychology"),
     ("Psychology lab skills","Low","Psychology"),
     ("Therapy Work","Medium","Psychology"),
-    ("Other","High","Psychology")
-);
+    ("Other","High","Psychology");
 
 
 

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Skill Form</title>
+    </head>
+    <body>
+       <form action ="index.php" method = "POST">
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="microsoft" value = 1 />Use of normal Microsoft range of programs</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="writtenEnglish" value = 2 />Written English</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="spokenEnglish" value = 3 />Spoken English</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="orgMeet" value = 4 />Organising Meetings</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="extStake" value = 5 />Dealing with external stakeholders</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="manageWork" value = 6 />Managing Work Tasks</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="projMan" value = 7 />Project Management</br>
+ 
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="ethics" value = 8 />Preparing Ethics Applications</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="literatureSearch" value = 9 />Literature Searches</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="literatureReview" value = 10 />Writing Literature Reviews</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="referencing" value = 11 />Referencing Skills</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="writePeople" value = 12 />Contributing to the writing of papers</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="prepPres" value = 13 />Contributing to the preparation of presentations</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="prepReport" value = 14 />Contributing to the preparation of reports"</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="grantApp" value = 15 />Assisting with grant applications</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="accProj" value = 16 />Maintaining accurate project records</br> 
+          
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="budRec" value = 17 />Keeping Project Budget Records</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="takeNotes" value = 18 />Taking notes and writing minutes from project meetings"</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="recruitPart" value = 19 />Recruiting participants</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="faceInterview" value = 20 />Interviewing face to face</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="phoneInterview" value = 21 />Interviewing by phone</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="designDevelop" value = 22 />Survey Design and Development</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="prepSurv" value = 23 />Preparing on-line surveys"</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="qualData" value = 24 />Data Analysis-Qualitative</br>
+          <input type = "checkbox" onclick="addSkill()" name = "skill" id ="quanData" value = 25 />Data Analysis-Quantitative</br> 
+          <input type="submit" id="submitButton" value="Submit Skills">
+        </form>
+    </body>
+    <script>
+        var skills=[];
+        function addSkill()
+        {
+            if(document.getElementById("microsoft").checked )
+            {
+                add(document.getElementById("microsoft").value);
+               
+            }
+            if(document.getElementById("writtenEnglish").checked )
+            {
+             add(document.getElementById("writtenEnglish").value);
+            }
+            if(document.getElementById("spokenEnglish").checked )
+            {
+                add(document.getElementById("spokenEnglish").value);
+            }
+            if(document.getElementById("orgMeet").checked )
+            {
+                add(document.getElementById("orgMeet").value);
+            }
+            if(document.getElementById("projMan").checked )
+            {
+                add(document.getElementById("projMan").value);
+               
+            }
+            if(document.getElementById("extStake").checked )
+            {
+             add(document.getElementById("extStake").value);
+            }
+            if(document.getElementById("manageWork").checked )
+            {
+                add(document.getElementById("manageWork").value);
+            }
+            if(document.getElementById("ethics").checked )
+            {
+                add(document.getElementById("ethics").value);
+            }
+
+            if(document.getElementById("literatureSearch").checked )
+            {
+                add(document.getElementById("literatureSearch").value);
+               
+            }
+            if(document.getElementById("literatureReview").checked )
+            {
+             add(document.getElementById("literatureReview").value);
+            }
+            if(document.getElementById("referencing").checked )
+            {
+                add(document.getElementById("referencing").value);
+            }
+            if(document.getElementById("writePeople").checked )
+            {
+                add(document.getElementById("writePeople").value);
+            }
+            if(document.getElementById("prepPres").checked )
+            {
+                add(document.getElementById("prepPres").value);
+               
+            }
+            if(document.getElementById("prepReport").checked )
+            {
+             add(document.getElementById("prepReport").value);
+            }
+            if(document.getElementById("grantApp").checked )
+            {
+                add(document.getElementById("grantApp").value);
+            }
+            if(document.getElementById("accProj").checked )
+            {
+                add(document.getElementById("accProj").value);
+            }
+                        if(document.getElementById("budRec").checked )
+            {
+                add(document.getElementById("budRec").value);
+            }
+
+            if(document.getElementById("takeNotes").checked )
+            {
+                add(document.getElementById("takeNotes").value);
+               
+            }
+            if(document.getElementById("recruitPart").checked )
+            {
+             add(document.getElementById("recruitPart").value);
+            }
+            if(document.getElementById("faceInterview").checked )
+            {
+                add(document.getElementById("faceInterview").value);
+            }
+            if(document.getElementById("phoneInterview").checked )
+            {
+                add(document.getElementById("phoneInterview").value);
+            }
+            if(document.getElementById("designDevelop").checked )
+            {
+                add(document.getElementById("designDevelop").value);
+               
+            }
+            if(document.getElementById("prepSurv").checked )
+            {
+             add(document.getElementById("prepSurv").value);
+            }
+            if(document.getElementById("qualData").checked )
+            {
+                add(document.getElementById("qualData").value);
+            }
+            if(document.getElementById("quanData").checked )
+            {
+                add(document.getElementById("quanData").value);
+            }            if(document.getElementById("microsoft").checked )
+            {
+                add(document.getElementById("microsoft").value);
+               
+            }
+            if(document.getElementById("writtenEnglish").checked )
+            {
+             add(document.getElementById("writtenEnglish").value);
+            }
+            if(document.getElementById("spokenEnglish").checked )
+            {
+                add(document.getElementById("spokenEnglish").value);
+            }
+            if(document.getElementById("orgMeet").checked )
+            {
+                add(document.getElementById("orgMeet").value);
+            }
+            if(document.getElementById("projMan").checked )
+            {
+                add(document.getElementById("projMan").value);
+               
+            }
+            if(document.getElementById("extStake").checked )
+            {
+             add(document.getElementById("extStake").value);
+            }
+            if(document.getElementById("manageWork").checked )
+            {
+                add(document.getElementById("manageWork").value);
+            }
+            if(document.getElementById("ethics").checked )
+            {
+                add(document.getElementById("ethics").value);
+            }
+
+            if(document.getElementById("literatureSearch").checked )
+            {
+                add(document.getElementById("literatureSearch").value);
+               
+            }
+            if(document.getElementById("literatureReview").checked )
+            {
+             add(document.getElementById("literatureReview").value);
+            }
+            if(document.getElementById("referencing").checked )
+            {
+                add(document.getElementById("referencing").value);
+            }
+            if(document.getElementById("writePeople").checked )
+            {
+                add(document.getElementById("writePeople").value);
+            }
+            if(document.getElementById("prepPres").checked )
+            {
+                add(document.getElementById("prepPres").value);
+               
+            }
+            if(document.getElementById("prepReport").checked )
+            {
+             add(document.getElementById("prepReport").value);
+            }
+            if(document.getElementById("grantApp").checked )
+            {
+                add(document.getElementById("grantApp").value);
+            }
+            if(document.getElementById("accProj").checked )
+            {
+                add(document.getElementById("accProj").value);
+            }
+                        if(document.getElementById("budRec").checked )
+            {
+                add(document.getElementById("budRec").value);
+            }
+
+            if(document.getElementById("takeNotes").checked )
+            {
+                add(document.getElementById("takeNotes").value);
+               
+            }
+            if(document.getElementById("recruitPart").checked )
+            {
+             add(document.getElementById("recruitPart").value);
+            }
+            if(document.getElementById("faceInterview").checked )
+            {
+                add(document.getElementById("faceInterview").value);
+            }
+            if(document.getElementById("phoneInterview").checked )
+            {
+                add(document.getElementById("phoneInterview").value);
+            }
+            if(document.getElementById("designDevelop").checked )
+            {
+                add(document.getElementById("designDevelop").value);
+               
+            }
+            if(document.getElementById("prepSurv").checked )
+            {
+             add(document.getElementById("prepSurv").value);
+            }
+            if(document.getElementById("qualData").checked )
+            {
+                add(document.getElementById("qualData").value);
+            }
+            if(document.getElementById("quanData").checked )
+            {
+                add(document.getElementById("quanData").value);
+            }
+                        if(!document.getElementById("microsoft").checked )
+            {
+                remove(document.getElementById("microsoft").value);
+               
+            }
+            if(!document.getElementById("writtenEnglish").checked )
+            {
+             remove(document.getElementById("writtenEnglish").value);
+            }
+            if(!document.getElementById("spokenEnglish").checked )
+            {
+                remove(document.getElementById("spokenEnglish").value);
+            }
+            if(!document.getElementById("orgMeet").checked )
+            {
+                remove(document.getElementById("orgMeet").value);
+            }
+            if(!document.getElementById("projMan").checked )
+            {
+                remove(document.getElementById("projMan").value);
+               
+            }
+            if(!document.getElementById("extStake").checked )
+            {
+             remove(document.getElementById("extStake").value);
+            }
+            if(!document.getElementById("manageWork").checked )
+            {
+                remove(document.getElementById("manageWork").value);
+            }
+            if(!document.getElementById("ethics").checked )
+            {
+                remove(document.getElementById("ethics").value);
+            }
+
+            if(!document.getElementById("literatureSearch").checked )
+            {
+                remove(document.getElementById("literatureSearch").value);
+               
+            }
+            if(!document.getElementById("literatureReview").checked )
+            {
+             remove(document.getElementById("literatureReview").value);
+            }
+            if(!document.getElementById("referencing").checked )
+            {
+                remove(document.getElementById("referencing").value);
+            }
+            if(!document.getElementById("writePeople").checked )
+            {
+                remove(document.getElementById("writePeople").value);
+            }
+            if(!document.getElementById("prepPres").checked )
+            {
+                remove(document.getElementById("prepPres").value);
+               
+            }
+
+            if(!document.getElementById("prepReport").checked )
+            {
+             remove(document.getElementById("prepReport").value);
+            }
+            if(!document.getElementById("grantApp").checked )
+            {
+                remove(document.getElementById("grantApp").value);
+            }
+            if(!document.getElementById("accProj").checked )
+            {
+                remove(document.getElementById("accProj").value);
+            }
+                        if(!document.getElementById("budRec").checked )
+            {
+                remove(document.getElementById("budRec").value);
+            }
+
+            if(!document.getElementById("takeNotes").checked )
+            {
+                remove(document.getElementById("takeNotes").value);
+               
+            }
+            if(!document.getElementById("recruitPart").checked )
+            {
+             remove(document.getElementById("recruitPart").value);
+            }
+            if(!document.getElementById("faceInterview").checked )
+            {
+                remove(document.getElementById("faceInterview").value);
+            }
+            if(!document.getElementById("phoneInterview").checked )
+            {
+                remove(document.getElementById("phoneInterview").value);
+            }
+            if(!document.getElementById("designDevelop").checked )
+            {
+                remove(document.getElementById("designDevelop").value);
+               
+            }
+            if(!document.getElementById("prepSurv").checked )
+            {
+             remove(document.getElementById("prepSurv").value);
+            }
+            if(!document.getElementById("qualData").checked )
+            {
+                remove(document.getElementById("qualData").value);
+            }
+            if(!document.getElementById("quanData").checked )
+            {
+                remove(document.getElementById("quanData").value);
+            }
+        }
+        function add(x)
+        {
+            console.log(x);
+            var sID={};
+            sID.id = x;
+            htt = new XMLHttpRequest();
+            htt.open("POST","addSkill.php",true);
+            htt.send(JSON.stringify(sID));
+        }
+        function remove(y)
+        {
+            console.log(y);
+            var gID={};
+            gID.id = y;
+            htt = new XMLHttpRequest();
+            htt.open("POST","deleteSkill.php",true);
+            htt.send(JSON.stringify(gID));
+        }
+        </script>
+</html>

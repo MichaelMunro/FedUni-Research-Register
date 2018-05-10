@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Specific Skills</title>
+    </head>
+    <body>
+        <form id = "forms" action="index.php" method = "POST">
+            Category: <select id = "category" name = "tCategory">
+                <option>Psychology</option>
+                <option>Information Technology</option>
+            </select></p>
+            </form>
+        <form id = "form" action="index.php" method = "POST">
+
+        <script>
+            var htt;
+            var sizes;
+            var lists;
+            var sel = document.getElementById('category');
+            sel.addEventListener('change',function(ev)
+            {
+                
+                getList(sel.options[sel.selectedIndex].text);
+            },false)
+
+            function clear()
+            {
+                for(var i = 0; i<sizes;i++)
+                {
+                    /*var inpToDel = document.getElementById("skill"+i);
+                    var paraToDel =document.getElementById("para"+i);
+                    var textToDel =document.getElementById("text"+i);
+                    x.removeChild(inpToDel);
+                    x.removeChild(paraToDel);
+                    x.removeChild(textToDel);*/
+                    var myNode = document.getElementById("form");
+                    while (myNode.firstChild) {
+                        myNode.removeChild(myNode.firstChild);
+    }
+                   // myNode.removeChild(document.getElementById("sub"));
+                   // myNode.removeChild(document.getElementById("button"));
+
+
+                }
+            }
+            function getList(d)
+            {
+                clear();
+                htt = new XMLHttpRequest();
+                var r={};
+                r.pageID= 1;
+                console.log(d);
+                r.category = d;
+                htt.open("POST","getSpecific.php",true);
+                htt.onload= list;
+                htt.send(JSON.stringify(r));
+            } 
+            var x = document.getElementById("form");
+            function list(ev)
+            {
+                lists = JSON.parse(htt.responseText);
+                size=lists.length;
+                sizes = size;
+                for( var i = 0; i<size;i++)
+                {
+                    
+                    var inp = document.createElement("input");
+                    inp.setAttribute("type","checkbox");
+                    inp.setAttribute("id","skill"+i);
+                    inp.setAttribute("value",lists[i].skill_id);
+                    x.appendChild(inp);
+                   /* var div = document.createElement("DIV");
+                    div.innerHTML=lists[i].skill_name;
+                    x.appendChild(div);*/
+                    var h = document.createElement("P");
+                    h.setAttribute("id","para"+i);
+                    var t = document.createTextNode(lists[i].skill_name);
+                   // t.setAttribute("id","text"+i);
+                    x.appendChild(t);
+                    x.appendChild(h);
+                }
+                var but=document.createElement("input");
+                but.setAttribute("type","submit");
+                but.setAttribute("id","sub");
+                but.setAttribute("name","submitButton");
+                but.setAttribute("value","Continue");
+                x.appendChild(but);
+                            var button = document.createElement("input");
+            button.setAttribute("id","Button");
+            button.setAttribute("type","Button");
+            button.setAttribute("value","Add Skills");
+            button.setAttribute("onclick","test()");
+            x.appendChild(button);
+
+            }
+
+
+            function test()
+            {
+             
+                var s = 0;
+                var g=0
+                var array= [];
+
+                while(s<sizes)
+                {
+                    var t = document.getElementById("skill"+s);
+                    if(t.checked)
+                    {
+                        array[g] = t.value;
+                        g++;
+                    }
+                    s++;
+                }
+                var htts;
+                htts = new XMLHttpRequest();
+                htts.open("POST","sign.php",true);
+                var hID = {};
+                hID.data= array; 
+                hID.lengths =array.length;
+                htts.send(JSON.stringify(hID));
+
+            }
+
+</script>
+            </form>
+
+    </body>
+
+</html>

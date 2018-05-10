@@ -132,7 +132,7 @@ CREATE TABLE Skills
     skill_id INT PRIMARY KEY AUTO_INCREMENT,
     skill_name VARCHAR(100) NOT NULL,
     skill_level VARCHAR(10) NOT NULL, 
-    skill_type VARCHAR(20)
+    skill_type VARCHAR(100)
 );
 
 
@@ -180,7 +180,11 @@ INSERT INTO Skills(skill_name,skill_level,skill_type) VALUES
     ("Participant Recruitment","Medium","Psychology"),
     ("Psychology lab skills","Low","Psychology"),
     ("Therapy Work","Medium","Psychology"),
-    ("Other","High","Psychology");
+    ("Other","High","Psychology"),
+
+        ("Java Programming","Low","Information Technology"),
+    ("Networking","Medium","Information Technology"),
+    ("Games Design","High","Information Technology");
 
 
 

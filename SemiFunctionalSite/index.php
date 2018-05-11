@@ -16,12 +16,11 @@ session_start();
             if(is_logged_in())
             {
                 echo "<h1>Welcome ".getName()."</h1>";
-            }
+            
 
         ?>
-        <a href = "RegistrationForm.html">Register</a>
-        <?php            if(is_logged_in())
-            {
+        <a href = "Profile.php">View Profile</a>
+        <?php            
         ?>
         <a href = "logout.php">Logout</a>
         <?php
@@ -30,6 +29,7 @@ session_start();
             {
 ?>
 <a href = "Login.html">Login</a>
+        <a href = "RegistrationForm.html">Register</a>
 <?php
 }
  ?>

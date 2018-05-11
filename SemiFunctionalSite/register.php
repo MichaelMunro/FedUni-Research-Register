@@ -35,6 +35,6 @@ session_start();
 	if($success)
     {
     
-       header('Location: Skills.html');
+       header('Location: education.html');
     }
 ?>

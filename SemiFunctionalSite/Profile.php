@@ -34,7 +34,7 @@ require_once "default.php";
             echo "Date of birth: ".$row['day_dob']."th of " .$row['month_dob']." ".$row['year_dob'];
 
 
-            $query = "SELECT qualification.qualification_name, qualification.Uni  FROM Qualification INNER JOIN Profiles ON qualification.qualification_id=profiles.qualification_id WHERE profiles.users_id = ? ;";
+            $query = "SELECT qualification.qualification_name,qualification.qualification_type, qualification.Uni,qualification.end_date  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
             $stmt= mysqli_prepare($conn,$query);
              mysqli_stmt_bind_param($stmt,"d",$user_id);
 
@@ -43,9 +43,9 @@ require_once "default.php";
             echo "<h1>Education</h1>";
             while($row1 = mysqli_fetch_assoc($results))
             {
-                echo $row1['qualification_name']. " at ".$row1['Uni']."</p>";
+                echo $row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']." finished at ".$row1['end_date']."</p>";
             }
-            $query = "SELECT Skills.skill_name, Skills.skill_level  FROM Skills INNER JOIN User_Skills ON Skills.skill_id=User_Skills.skill_id WHERE User_Skills.user_id = ? ;";
+            $query = "SELECT Skills.skill_name, User_Skills.skill_level  FROM Skills INNER JOIN User_Skills ON Skills.skill_id=User_Skills.skill_id WHERE User_Skills.user_id = ? ;";
             $stmt= mysqli_prepare($conn,$query);
              mysqli_stmt_bind_param($stmt,"d",$user_id);
 

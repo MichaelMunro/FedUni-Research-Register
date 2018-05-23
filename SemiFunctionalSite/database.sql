@@ -16,61 +16,39 @@ CREATE TABLE Users
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(5) NOT NULL, -- Mr/Mrs/Miss/Dr etc.
     first_name VARCHAR(20) NOT NULL,
-    middle_name VARCHAR(40) NOT NULL,
+    middle_name VARCHAR(40),
     last_name VARCHAR(40) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    address VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(13) NOT NULL,
+    email VARCHAR(100),
+    address VARCHAR(100) ,
+    phone_number VARCHAR(13),
     password VARCHAR(255) NOT NULL,
-    day_dob INT NOT NULL,
-    month_dob VARCHAR(15) NOT NULL,
+    day_dob INT,
+    month_dob VARCHAR(15),
     year_dob INT NOT NULL,
    -- permisison can be (0) for standard (1) for admin (2) for super admin
     permission INT NOT NULL
 );
 
-
-
-
-CREATE TABLE Major
-(
-    major_id INT PRIMARY KEY AUTO_INCREMENT,
-    major_name VARCHAR(100) NOT NULL,
-    major_description VARCHAR(250)
-);
-
-CREATE TABLE Minor
-(
-    minor_id INT PRIMARY KEY AUTO_INCREMENT,
-    minor_name VARCHAR(100) NOT NULL,
-    minor_description VARCHAR(250)
-);
 -- I'm assuming that many users can have multiple degrees and degrees can have multiple users and grees can have multiple majors and minors--
 CREATE TABLE Qualification
 (
     qualification_id INT PRIMARY KEY AUTO_INCREMENT,
+    qualification_type VARCHAR(100),
     qualification_name VARCHAR(100) NOT NULL,
-    majors_id INT,
-    minors_id INT,
-    Uni VARCHAR(100),
-    FOREIGN KEY (majors_id) REFERENCES Major(major_id),
-    FOREIGN KEY (minors_id) REFERENCES Minor(minor_id)
+    end_date VARCHAR(15),
+    finished int,
+    Uni VARCHAR(100)
+
 );
 
-
-CREATE TABLE Keyword
+CREATE TABLE Study
 (
-    keyword_id INT PRIMARY KEY AUTO_INCREMENT,
-    keyword_name VARCHAR(100) NOT NULL
-);
+    user_id INT,
+    qualification_id INT,
+    PRIMARY KEY(user_id,qualification_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id)
 
-CREATE TABLE Keyword_Assignment
-(
-    keywords_id INT,
-    users_id INT,
-    PRIMARY KEY(keywords_id,users_id),
-    FOREIGN KEY (users_id) REFERENCES Users(user_id),
-    FOREIGN KEY (keywords_id) REFERENCES Keyword(keyword_id)
 );
 CREATE TABLE Employment
 (
@@ -131,7 +109,6 @@ CREATE TABLE Skills
 (
     skill_id INT PRIMARY KEY AUTO_INCREMENT,
     skill_name VARCHAR(100) NOT NULL,
-    skill_level VARCHAR(10) NOT NULL, 
     skill_type VARCHAR(100)
 );
 
@@ -141,50 +118,51 @@ CREATE TABLE User_Skills
 (
     user_id INT,
     skill_id INT,
+    skill_level VARCHAR(10),
     PRIMARY KEY(user_id,skill_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (skill_id) REFERENCES Skills(skill_id)
 );
 
-INSERT INTO Skills(skill_name,skill_level,skill_type) VALUES
+INSERT INTO Skills(skill_name,skill_type) VALUES
 
-    ("Use of normal Microsoft range of programs","Medium","General"),
-    ("Written English","Low","General"),
-    ("Spoken English","Medium","General"),
-    ("Organising Meetings","Medium","General"),
-    ("Dealing with external stakeholders","High","General"),
-    ("Managing Work Tasks","Medium","General"),
-    ("Project Management","Low","General"),
+    ("Use of normal Microsoft range of programs","General"),
+    ("Written English","General"),
+    ("Spoken English","General"),
+    ("Organising Meetings","General"),
+    ("Dealing with external stakeholders","General"),
+    ("Managing Work Tasks","General"),
+    ("Project Management","General"),
 
-    ("Preparing Ethics Applications","Medium","Research"),
-    ("Literature Searches","Low","Research"),
-    ("Writing Literature Reviews","Medium","Research"),
-    ("Referencing Skills","Medium","Research"),
-    ("Contributing to the writing of papers","High","Research"),
-    ("Contributing to the preparation of presentations","Medium","Research"),
-    ("Contributing to the preparation of reports","High","Research"),
-    ("Assisting with grant applications","Medium","Research"),
-    ("Maintaining accurate project records","Low","Research"),
-    ("Keeping Project Budget Records","Medium","Research"),
-    ("Taking notes and writing minutes from project meetings","Medium","Research"),
-    ("Recruiting participants","High","Research"),
-    ("Interviewing face to face","Medium","Research"),
-    ("Interviewing by phone","Low","Research"),
-    ("Survey Design and Development","Medium","Research"),
-    ("Preparing on-line surveys","High","Research"),
-    ("Data Analysis-Qualitative","Medium","Research"),
-    ("Data Analysis-Quantitative","Low","Research"),
+    ("Preparing Ethics Applications","Research"),
+    ("Literature Searches","Research"),
+    ("Writing Literature Reviews","Research"),
+    ("Referencing Skills","Research"),
+    ("Contributing to the writing of papers","Research"),
+    ("Contributing to the preparation of presentations","Research"),
+    ("Contributing to the preparation of reports","Research"),
+    ("Assisting with grant applications","Research"),
+    ("Maintaining accurate project records","Research"),
+    ("Keeping Project Budget Records","Research"),
+    ("Taking notes and writing minutes from project meetings","Research"),
+    ("Recruiting participants","Research"),
+    ("Interviewing face to face","Research"),
+    ("Interviewing by phone","Research"),
+    ("Survey Design and Development","Research"),
+    ("Preparing on-line surveys","Research"),
+    ("Data Analysis-Qualitative","Research"),
+    ("Data Analysis-Quantitative","Research"),
 
-    ("Systematic Reviews of Literature","Low","Psychology"),
-    ("Manuscript Drifting","High","Psychology"),
-    ("Participant Recruitment","Medium","Psychology"),
-    ("Psychology lab skills","Low","Psychology"),
-    ("Therapy Work","Medium","Psychology"),
-    ("Other","High","Psychology"),
+    ("Systematic Reviews of Literature","Psychology"),
+    ("Manuscript Drifting","Psychology"),
+    ("Participant Recruitment","Psychology"),
+    ("Psychology lab skills","Psychology"),
+    ("Therapy Work","Psychology"),
+    ("Other","Psychology"),
 
-        ("Java Programming","Low","Information Technology"),
-    ("Networking","Medium","Information Technology"),
-    ("Games Design","High","Information Technology");
+        ("Java Programming","Information Technology"),
+    ("Networking","Information Technology"),
+    ("Games Design","Information Technology");
 
 
 

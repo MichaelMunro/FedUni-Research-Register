@@ -8,16 +8,17 @@ session_start();
     //Converts the contents into a PHP Object
     $req_obj = json_decode($req);
 
-    $skillID = $req_obj->data;
+    $checkID = $req_obj->checkData;
+    $skillID = $req_obj->skillData;
     $userid = logged_in_user();
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
-    $query= "INSERT INTO user_skills(user_id,skill_id) VALUES(?,?);";
+    $query= "INSERT INTO user_skills(user_id,skill_id,skill_level) VALUES(?,?,?);";
     $x = $req_obj->lengths;
     $i=0;
     while($i<$x)
     {
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt,"dd",$userid,$skillID[$i]);
+        mysqli_stmt_bind_param($stmt,"dds",$userid,$checkID[$i],$skillID[$i]);
         $success = mysqli_stmt_execute($stmt);
         $results = mysqli_stmt_get_result($stmt);
         $i++;

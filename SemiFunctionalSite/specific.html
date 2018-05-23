@@ -63,8 +63,33 @@
                     var inp = document.createElement("input");
                     inp.setAttribute("type","checkbox");
                     inp.setAttribute("id","skill"+i);
+                                        var y = document.createElement("select");
+                    y.setAttribute("name","picks");
+                    y.setAttribute("id","pick"+i);
+
+                    var low = document.createElement("Option");
+                    low.innerHTML="Low";
+                    low.value="Low";
+                    var mid = document.createElement("Option");
+                    mid.innerHTML="Medium";
+                    mid.value="Medium";
+                    var high = document.createElement("Option");
+                    high.innerHTML="High";
+                    high.value="High";
+                    y.style.display="none";
+                    y.appendChild(low);
+                    y.appendChild(mid);
+                    y.appendChild(high);
                     inp.setAttribute("value",lists[i].skill_id);
                     x.appendChild(inp);
+                    inp.addEventListener('click',function(ev)
+                    {
+                        console.log();
+                        var str = event.target.id;
+                        var res = str.replace("skill","pick");
+                        doSomething(res);
+                    
+                    },false);
 
                     var h = document.createElement("P");
                     h.setAttribute("id","para"+i);
@@ -72,6 +97,20 @@
 
                     x.appendChild(t);
                     x.appendChild(h);
+                    x.appendChild(y);
+                }
+                function doSomething(z)
+                {
+                    console.log(z);
+                    var g= document.getElementById(z);
+                    if (g.style.display=="block")
+                    {
+                        g.style.display= "none";
+                    }
+                    else{
+                        g.style.display ="block";
+                    }
+                    console.log(g.value);
                 }
                 var but=document.createElement("input");
                 but.setAttribute("type","submit");
@@ -95,6 +134,7 @@
                 var s = 0;
                 var g=0
                 var array= [];
+                var arr=[];
 
                 while(s<sizes)
                 {
@@ -102,6 +142,7 @@
                     if(t.checked)
                     {
                         array[g] = t.value;
+                        arr[g]=document.getElementById("pick"+s).value
                         g++;
                     }
                     s++;
@@ -110,7 +151,8 @@
                 htts = new XMLHttpRequest();
                 htts.open("POST","sign.php",true);
                 var hID = {};
-                hID.data= array; 
+                hID.checkData= array; 
+                hID.skillData=arr;
                 hID.lengths =array.length;
                 htts.send(JSON.stringify(hID));
 

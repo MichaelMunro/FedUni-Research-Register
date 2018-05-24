@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <form id="form1" action ="employment.html" method = "POST">
+            <select id = "type0" name = "tTypes">
+            <option>Higher Ed</option>
+            <option>VET</option>
+            <option>TAFE</option>
+            </select>
+           <input id = "degree0" placeholder = "Degree Name" type = "text" name = "tName">  
+            <input id = "uni0" placeholder = "University" type = "text" name = "tUni">
+            <input id = "date0" placeholder = "Date Finished"type = "text" name = "tDate">
+           <input id = "study0" type = "checkbox" name = "tStudy">
+            <input type = "button" name = "tButton" onClick="addQual()" value = "Submit">  
+            <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Education">    
+            <input type = "submit" name = "tSubmit" value = "Continue to Skills"> 
+        </form> 
+        <script>
+            var num = 1;
+
+            function addMore()
+            {
+                var forms = document.getElementById("form1");
+                
+                var types = document.createElement("select");
+                types.setAttribute("id","type"+num);
+                types.setAttribute("name","tType");
+
+                var highEd = document.createElement("Option");
+                highEd.innerHTML="Higher Ed";
+                highEd.value="Higher Ed";
+
+                var vet = document.createElement("Option");
+                vet.innerHTML="VET";
+                vet.value="VET";
+
+                var tafe = document.createElement("Option");
+                tafe.innerHTML="TAFE";
+                tafe.value="TAFE";
+
+                types.appendChild(highEd);
+                types.appendChild(vet);
+                types.appendChild(tafe);
+
+                var degrees = document.createElement("input");
+                degrees.setAttribute("type","text");
+                degrees.setAttribute("placeholder","Degree Name");
+                degrees.setAttribute("id","degree"+num);
+                degrees.setAttribute("name","tName");
+
+                var uni = document.createElement("input");
+                uni.setAttribute("type","text");
+                uni.setAttribute("placeholder","University");
+                uni.setAttribute("id","uni"+num);
+                uni.setAttribute("name","tUni");
+
+                var dates = document.createElement("input");
+                dates.setAttribute("type","text");
+                dates.setAttribute("placeholder","Date Finished");
+                dates.setAttribute("id","date"+num);
+                dates.setAttribute("name","tDate");
+                                
+                var stud = document.createElement("input");
+                stud.setAttribute("type","checkbox");
+                stud.setAttribute("id","study"+num);
+                stud.setAttribute("name","tStudy");
+
+                var h = document.createElement("P");
+                h.setAttribute("id","para"+num);
+
+                forms.appendChild(h);
+
+                forms.appendChild(types);
+                forms.appendChild(degrees);
+                forms.appendChild(uni);
+                forms.appendChild(dates);
+                forms.appendChild(stud);
+                num++;
+            }
+
+            function addQual()
+            {
+                var typeArr = [];
+                var degArr= [];
+                var uniArr= [];
+                var dateArr=[];
+                var studyArr = [];
+                for(var i = 0;i<num;i++)
+                {
+                    typeArr[i]=document.getElementById("type"+i).value;
+                    degArr[i]=document.getElementById("degree"+i).value;
+                    uniArr[i]=document.getElementById("uni"+i).value;
+                    dateArr[i]=document.getElementById("date"+i).value;
+                    if(document.getElementById("study"+i).checked)
+                    {
+                        studyArr[i]=1;
+                    }
+                    if(!document.getElementById("study"+i).checked)
+                    {
+                        studyArr[i]=0;
+                    }
+                                        
+                }
+                for(var c = 0;c<num;c++)
+                {
+                    console.log(degArr[c]);
+                }
+                var htts;
+                htts = new XMLHttpRequest();
+                htts.open("POST","addEducation.php",true);
+                var hID = {};
+                hID.typeData= typeArr; 
+                hID.degData=degArr;
+                hID.uniData=uniArr;
+                hID.dateData=dateArr;
+                hID.studyData=studyArr;
+                hID.lengths =num;
+                htts.send(JSON.stringify(hID));
+                alert(num + " courses have been added");
+            }
+</script>
+
+    </body>
+
+    </html>

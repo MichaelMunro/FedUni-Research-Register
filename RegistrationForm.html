@@ -5,25 +5,30 @@
     </head>
     <body>
         <form action ="register.php" method = "POST">
-            Title:<select id = "title" name = "tTitle">
+
+<table style="width:100%">
+            <tr><td>Title:</td><td><select id = "title" name = "tTitle">
                 <option>Mr</option>
                 <option>Ms</option>
                 <option>Mrs</option>
                 <option>Miss</option>
                 <option>Dr</option>
-            </select>
-            Last Name:<input type = "text" name = 'tLastName'>
-            First Name:<input type = "text" name = 'tFirstName'>
-            Middle Name:<input type = "text" name = 'tMiddleName'></p>
-            Address:<input type = "text" name = "tAddress"></p>
-            Contact Number: <input type = "text" name = "tContact"></p>
-            Email:<input type = "text" name = "tEmail"></p>
-            Date of Birth <select id = "day" name = "tDays"></select>
-            <select id = "month" name = "tMonths"></select>
-            <select id = "year" name = "tYears"></select></p>
-            Password:<input type = "password" name = "tPassword"></p>
-            Confirm Password:<input type = "password" name = "tConfirm"></p>
-             <input type="submit" name="submitButton" value="Register"></p>
+            </select></td>
+            <td>Last Name:</td><td><input type = "text" name = 'tLastName'></td>
+            <td>First Name:</td><td><input type = "text" name = 'tFirstName'></td>
+            <td>Middle Name:</td><td><input type = "text" name = 'tMiddleName'></td></tr>
+            <tr><td>Address:</td><td><input type = "text" name = "tAddress"></td></p></tr>
+           <tr><td> Contact Number:</td><td> <input type = "text" name = "tContact"></td></tr>
+          <tr><td>  Email:</td><td><input type = "text" name = "tEmail"></td></tr>
+            <tr>
+		<td>Date of Birth</td><td><select id ="day" name = "tDays"></select></td>
+           	<td><select id = "month" name = "tMonths"></select></td>
+            	<td><select id = "year" name = "tYears"></select></td>
+	    </tr>
+           <tr><td> Password:</td><td><input type = "password" name = "tPassword"></td></tr>
+            <tr><td>Confirm Password:</td><td><input type = "password" name = "tConfirm"></td></tr>
+            <tr><td> <input type="submit" name="submitButton" value="Register"></td></tr>
+</table>
         </form>
     </body>
     <script>

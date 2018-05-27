@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <form action ="register.php" method = "POST">
+
+<table style="width:100%">
+            <tr><td>Title:</td><td><select id = "title" name = "tTitle">
+                <option>Mr</option>
+                <option>Ms</option>
+                <option>Mrs</option>
+                <option>Miss</option>
+                <option>Dr</option>
+            </select></td>
+            <td>Last Name:</td><td><input type = "text" name = 'tLastName'></td>
+            <td>First Name:</td><td><input type = "text" name = 'tFirstName'></td>
+            <td>Middle Name:</td><td><input type = "text" name = 'tMiddleName'></td></tr>
+            <tr><td>Address:</td><td><input type = "text" name = "tAddress"></td></p></tr>
+           <tr><td> Contact Number:</td><td> <input type = "text" name = "tContact"></td></tr>
+          <tr><td>  Email:</td><td><input type = "text" name = "tEmail"></td></tr>
+            <tr>
+		<td>Date of Birth</td><td><select id ="day" name = "tDays"></select></td>
+           	<td><select id = "month" name = "tMonths"></select></td>
+            	<td><select id = "year" name = "tYears"></select></td>
+	    </tr>
+           <tr><td> Password:</td><td><input type = "password" name = "tPassword"></td></tr>
+            <tr><td>Confirm Password:</td><td><input type = "password" name = "tConfirm"></td></tr>
+            <tr><td> <input type="submit" name="submitButton" value="Register"></td></tr>
+</table>
+        </form>
+    </body>
+    <script>
+        var dayStart = 1;
+        var dayEnd = 31;
+        var dayOptions="<option>"+ "Day" + "</option>";
+        for(var i = dayStart;i<=dayEnd;i++)
+        {
+            dayOptions+="<option>"+ i + "</option>";
+        }
+        document.getElementById("day").innerHTML=dayOptions;
+
+        var monthStart = 0;
+        var monthEnd = 12;
+        var monthOptions="<option>"+ "Month" + "</option>";
+        var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+        for(var i = monthStart;i<monthEnd;i++)
+        {
+            monthOptions+="<option>"+ months[i] + "</option>";
+        }
+        document.getElementById("month").innerHTML=monthOptions;
+
+        var yearStart = 1900;
+        var yearEnd = 2018;
+        var yearOptions="<option>"+ "Year" + "</option>";
+        for(var i = yearStart;i<=yearEnd;i++)
+        {
+            yearOptions+="<option>"+ i + "</option>";
+        }
+        document.getElementById("year").innerHTML=yearOptions;
+
+
+    </script>
+
+</html>

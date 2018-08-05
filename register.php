@@ -11,9 +11,13 @@ session_start();
     $email = $_POST['tEmail'];
 
     $password = $_POST['tPassword'];
+    $cPassword=$_POST['tConfirm'];
     $perm = 0;
     $salt ='$2y$12$' . base64_encode(openssl_random_pseudo_bytes(32));
     $hashed_password = crypt($password,$salt);
+    $hashed_conf_password = crypt($cPassword,$salt);
+    if(strcmp($hashed_password,$hashed_conf_password)==0)
+    {
 		
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
     $query = "INSERT INTO Users(title,first_name,last_name,email,password,permission) VALUES (?,?,?,?,?,?);";
@@ -26,11 +30,21 @@ session_start();
     login($last_id);
     loginName($first);
     loginEmail($email);
-
+    setPermission($perm);
 		
 	if($success)
     {
     
        header('Location: education.html');
+    }
+    }else
+    {
+        echo "Passwords do not match";
+?>
+<form action = "RegistrationForm.html" mehtod = "POST">
+    <input type = "Submit" name= "back" value =="Go back"/>
+    </form>
+
+<?php
     }
 ?>

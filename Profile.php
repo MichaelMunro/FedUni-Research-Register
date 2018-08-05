@@ -14,7 +14,7 @@ require_once "default.php";
         $user_id;
         if(isset($_POST['tID']))
         {   
-            echo $_POST['tID'];
+           // echo $_POST['tID'];
             $user_id= $_POST['tID'];
         }
         else
@@ -35,24 +35,32 @@ require_once "default.php";
             echo "Full Name: ". $row['title']." ". $row['first_name']." ". $row['middle_name']." ". $row['last_name'];
             echo "</p>";
             echo "Email: ". $row['email'];
-            echo "</p>";
-            echo "Address: ". $row['address'];
-            echo "</p>";
-            echo "Phone Number: ". $row['phone_number'];
-            echo "</p>";
-            echo "Date of birth: ".$row['day_dob']."th of " .$row['month_dob']." ".$row['year_dob'];
+            //echo "</p>";
+            //echo "Address: ". $row['address'];
+            //echo "</p>";
+            //echo "Phone Number: ". $row['phone_number'];
+            //echo "</p>";
+            //echo "Date of birth: ".$row['day_dob']."th of " .$row['month_dob']." ".$row['year_dob'];
 
 
-            $query = "SELECT qualification.qualification_name,qualification.qualification_type, qualification.Uni,qualification.end_date  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
+            $query = "SELECT qualification.qualification_name,qualification.qualification_type, qualification.Uni,qualification.end_date, qualification.finished  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
             $stmt= mysqli_prepare($conn,$query);
              mysqli_stmt_bind_param($stmt,"d",$user_id);
 
             $success = mysqli_stmt_execute($stmt);
             $results = mysqli_stmt_get_result($stmt);
+           // $row1 = mysqli_fetch_assoc($results);
             echo "<h1>Education</h1>";
-            while($row1 = mysqli_fetch_assoc($results))
+            while($row1=mysqli_fetch_assoc($results))
             {
-                echo $row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']." finished at ".$row1['end_date']."</p>";
+
+                if($row1['finished']==1)
+                {
+                    echo "Still Studying: ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']."</p>";
+                }
+                else{
+                    echo "Completed ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']." finished at ".$row1['end_date']."</p>";
+                }
             }
            
            
@@ -90,10 +98,26 @@ require_once "default.php";
     <form action = "index.php" method = "POST">
         <input type = "submit" name = "tFinish" value = "Go Back Home"/>
         </form>
-    <form action ="delete.php" method ="POST">
+    <form id = "froms" action ="delete.php" method ="POST">
     <input type ="hidden" name="tDelete" value =<?php echo $user_id ?> />
-    <input type = "submit" name = "tDel" value = "Delete"/>
+    <input type = "button" name = "tDel" value = "Delete" onClick="show_alert()"/>
+    <input type = "submit"/>
     </form>
+    <script>
+        
+function show_alert() 
+{
+  if(confirm("Do you really want to do this?"))
+  {
+      console.log("hey");
+      var from = document.getElementById("froms");
+    from.submit();
+
+  }
+  else
+    return false;
+}
+        </script>
 </body>
 </html>
 

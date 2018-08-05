@@ -38,7 +38,7 @@ session_start();
                     <?php
                     while($row = mysqli_fetch_assoc($results))
                     {
-                        echo $row['user_id'];
+                       // echo $row['user_id'];
                         
                         $name= $row['first_name']." ".$row['last_name']?>
                         

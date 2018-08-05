@@ -20,7 +20,7 @@
             <input id = "endDate0" placeholder = "Date Finished" type = "text" name = "tEndDate">
             <input id = "tasks0" placeholder = "Tasks" type = "textArea" name = "tTasks">  
             <input type = "button" name = "tButton" onClick="addQual()" value = "Submit">  
-            <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Education">    
+            <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Employment History">    
             <input type = "submit" name = "tSubmit" value = "Continue to Skills"> 
         </form> 
         <script>
@@ -158,7 +158,7 @@
                 hID.taskData=taskArr;
                 hID.lengths =num;
                 htts.send(JSON.stringify(hID));
-                alert(num + " courses have been added");
+                alert(num + " jobs have been added");
             }
 </script>
 

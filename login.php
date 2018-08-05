@@ -22,7 +22,7 @@ require_once "default.php";
 			if($row)
 			{
 				$db_password = $row['password'];
-                echo $db_password;
+                
             
                 $dbEmail=$row['email'];
                 $dbFName=$row['first_name'];

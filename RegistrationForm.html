@@ -4,7 +4,7 @@
         <title>Registration Form</title>
     </head>
     <body>
-        <form action ="register.php" method = "POST">
+        <form id = "forms" action ="register.php" method = "POST">
             Title:<select id = "title" name = "tTitle">
                 <option>Mr</option>
                 <option>Ms</option>
@@ -15,13 +15,19 @@
             Last Name:<input type = "text" name = 'tLastName'>
             First Name:<input type = "text" name = 'tFirstName'></p>
             Email:<input type = "text" name = "tEmail"></p>
-            Password:<input type = "password" name = "tPassword"></p>
-            Confirm Password:<input type = "password" name = "tConfirm"></p>
-             <input type="submit" name="submitButton" value="Register"></p>
+            Password:<input id = "pass1"  type = "password" name = "tPassword" ></p>
+            Confirm Password:<input id = "pass2"  type = "password" name = "tConfirm" >
+                <span id = "message"></span>
+            </p>
+             <p>Do you currently have a degree? </p>
+            <input type = "radio" id = "YesDegree" name="degree" value "Yes">Yes 
+            <input type = "radio" id = "NoDegree" name="degree" value "No">No
+             <input id = "sub" type="button" name="submitButton" value="Register" style="display:none" onClick="show_alert()"/></p>
+             <input type = "submit"style="display:none"/>
         </form>
     </body>
     <script>
-        var dayStart = 1;
+     /*  var dayStart = 1;
         var dayEnd = 31;
         var dayOptions="<option>"+ "Day" + "</option>";
         for(var i = dayStart;i<=dayEnd;i++)
@@ -47,8 +53,74 @@
         {
             yearOptions+="<option>"+ i + "</option>";
         }
-        document.getElementById("year").innerHTML=yearOptions;
+        document.getElementById("year").innerHTML=yearOptions;*/
 
+
+        var conf = document.getElementById("pass2");
+        var conf1 = document.getElementById("pass1");
+        conf.addEventListener("keyup",function(ev)
+        {
+            var sub = document.getElementById('sub');
+            if(document.getElementById('pass1').value==document.getElementById('pass2').value)
+            {
+
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+                sub.style.display="block";
+
+
+            }
+            else
+            {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+                sub.style.display="none";
+
+
+            }
+        },false);
+        conf1.addEventListener("keyup",function(ev)
+        {
+            var sub = document.getElementById('sub');
+            if(document.getElementById('pass1').value==document.getElementById('pass2').value)
+            {
+
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+                sub.style.display="block";
+
+
+            }
+            else
+            {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+                sub.style.display="none";
+
+
+            }
+        },false);
+          
+          function show_alert() 
+{
+    var rad = document.getElementById("YesDegree");
+    console.log("hi");
+    if (document.getElementById("YesDegree").checked)
+    {
+        console.log("hey");
+              var from = document.getElementById("forms");
+                from.submit();
+    }
+    if (document.getElementById("NoDegree").checked)
+    {
+        console.log("herllo0");
+        alert("You need a bachelor degree to continue");
+
+    }
+
+    
+
+}
 
     </script>
 

@@ -30,7 +30,7 @@ CREATE TABLE Users
 );
 
 INSERT INTO Users(title,first_name,middle_name,last_name,email,address,phone_number,password,day_dob,month_dob,year_dob,permission) VALUES 
-    ("Dr","Michael","Admin","Admin","Michael","Admin",0123441,"$2y$12$0SM7zfbupHNhD8Vu6iBCVeunUIdzdXL.6HmTsT7ZSvh3qrK/zVhsK",12,"October",1990,2),
+    ("Dr","Michael","Admin","Admin","Michael","Admin",0123441,"$2y$12$0SM7zfbupHNhD8Vu6iBCVeunUIdzdXL.6HmTsT7ZSvh3qrK/zVhsK",12,"October",1990,0),
     ("Dr","Admin","Admin","Admin","Admin","Admin",0123441,"$2y$12$0SM7zfbupHNhD8Vu6iBCVeunUIdzdXL.6HmTsT7ZSvh3qrK/zVhsK",12,"October",1990,2);
 
 -- I'm assuming that many users can have multiple degrees and degrees can have multiple users and grees can have multiple majors and minors--

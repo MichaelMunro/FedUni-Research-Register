@@ -13,10 +13,11 @@
            <input id = "degree0" placeholder = "Degree Name" type = "text" name = "tName">  
             <input id = "uni0" placeholder = "University" type = "text" name = "tUni">
             <input id = "date0" placeholder = "Date Finished"type = "text" name = "tDate">
-           <input id = "study0" type = "checkbox" name = "tStudy">
+           <span>Still Studying?</span>
+            <input id = "study0" type = "checkbox" name = "tStudy">
             <input type = "button" name = "tButton" onClick="addQual()" value = "Submit">  
             <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Education">    
-            <input type = "submit" name = "tSubmit" value = "Continue to Skills"> 
+            <input type = "submit" name = "tSubmit" value = "Continue to Employment"> 
         </form> 
         <script>
             var num = 1;
@@ -62,6 +63,9 @@
                 dates.setAttribute("placeholder","Date Finished");
                 dates.setAttribute("id","date"+num);
                 dates.setAttribute("name","tDate");
+
+                var span = document.createElement("span");
+                span.innerText="Still Studying?";
                                 
                 var stud = document.createElement("input");
                 stud.setAttribute("type","checkbox");
@@ -77,6 +81,7 @@
                 forms.appendChild(degrees);
                 forms.appendChild(uni);
                 forms.appendChild(dates);
+                forms.appendChild(span);
                 forms.appendChild(stud);
                 num++;
             }

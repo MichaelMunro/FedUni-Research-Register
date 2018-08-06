@@ -27,34 +27,6 @@
         </form>
     </body>
     <script>
-     /*  var dayStart = 1;
-        var dayEnd = 31;
-        var dayOptions="<option>"+ "Day" + "</option>";
-        for(var i = dayStart;i<=dayEnd;i++)
-        {
-            dayOptions+="<option>"+ i + "</option>";
-        }
-        document.getElementById("day").innerHTML=dayOptions;
-
-        var monthStart = 0;
-        var monthEnd = 12;
-        var monthOptions="<option>"+ "Month" + "</option>";
-        var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-        for(var i = monthStart;i<monthEnd;i++)
-        {
-            monthOptions+="<option>"+ months[i] + "</option>";
-        }
-        document.getElementById("month").innerHTML=monthOptions;
-
-        var yearStart = 1900;
-        var yearEnd = 2018;
-        var yearOptions="<option>"+ "Year" + "</option>";
-        for(var i = yearStart;i<=yearEnd;i++)
-        {
-            yearOptions+="<option>"+ i + "</option>";
-        }
-        document.getElementById("year").innerHTML=yearOptions;*/
-
 
         var conf = document.getElementById("pass2");
         var conf1 = document.getElementById("pass1");
@@ -104,16 +76,16 @@
           function show_alert() 
 {
     var rad = document.getElementById("YesDegree");
-    console.log("hi");
+    
     if (document.getElementById("YesDegree").checked)
     {
-        console.log("hey");
+    
               var from = document.getElementById("forms");
                 from.submit();
     }
     if (document.getElementById("NoDegree").checked)
     {
-        console.log("herllo0");
+    
         alert("You need a bachelor degree to continue");
 
     }

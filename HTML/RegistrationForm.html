@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <form id = "forms" action ="../PHP/register.php" method = "POST">
+            Title:<select id = "title" name = "tTitle">
+                <option>Mr</option>
+                <option>Ms</option>
+                <option>Mrs</option>
+                <option>Miss</option>
+                <option>Dr</option>
+            </select>
+            Last Name:<input type = "text" name = 'tLastName'>
+            First Name:<input type = "text" name = 'tFirstName'></p>
+            Email:<input type = "text" name = "tEmail"></p>
+            Password:<input id = "pass1"  type = "password" name = "tPassword" ></p>
+            Confirm Password:<input id = "pass2"  type = "password" name = "tConfirm" >
+                <span id = "message"></span>
+            </p>
+             <p>Do you currently have a degree? </p>
+            <input type = "radio" id = "YesDegree" name="degree" value "Yes">Yes 
+            <input type = "radio" id = "NoDegree" name="degree" value "No">No
+             <input id = "sub" type="button" name="submitButton" value="Register" style="display:none" onClick="degree_alert()"/></p>
+             <input type = "submit"style="display:none"/>
+        </form>
+    </body>
+    <script src = "../JS/alerts.js"></script>
+
+</html>

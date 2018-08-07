@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <form id="form1" action ="Skills.html" method = "POST">
+            <select id = "type0" name = "tTypes">
+            <option>Full Time</option>
+            <option>Part Time</option>
+            <option>Casual</option>
+            <option>Internship</option>
+            <option>Apprenticeship</option>
+            </select>
+           <input id = "title0" placeholder = "Position Type" type = "text" name = "tName">  
+            <input id = "manager0" placeholder = "Manager's Name" type = "text" name = "tManager">
+            <input id = "managerPhone0" placeholder = "Manager's Phone" type = "text" name = "tManagerPhone">  
+            <input id = "org0" placeholder = "Organisation" type = "text" name = "tOrg">
+            <input id = "startDate0" placeholder = "Date Started" type = "text" name = "tstartDate">
+            <input id = "endDate0" placeholder = "Date Finished" type = "text" name = "tEndDate">
+            <input id = "tasks0" placeholder = "Tasks" type = "textArea" name = "tTasks">  
+            <input type = "button" name = "tButton" onClick="addQual()" value = "Submit">  
+            <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Employment History">    
+            <input type = "submit" name = "tSubmit" value = "Continue to Skills"> 
+        </form> 
+        <script src="../JS/addEmploy.js"></script>
+
+    </body>
+
+    </html>

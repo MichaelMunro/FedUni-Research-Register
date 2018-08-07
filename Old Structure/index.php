@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-    require_once "PHP/default.php";
+    require_once "default.php";
 
 
 ?>
@@ -19,10 +19,10 @@ session_start();
             
 
         ?>
-        <a href = "PHP/Profile.php">View Profile</a>
+        <a href = "Profile.php">View Profile</a>
         <?php            
         ?>
-        <a href = "PHP/logout.php">Logout</a>
+        <a href = "logout.php">Logout</a>
         <?php
              
             echo "</p>";
@@ -38,8 +38,11 @@ session_start();
                     <?php
                     while($row = mysqli_fetch_assoc($results))
                     {
+                       // echo $row['user_id'];
+                        
                         $name= $row['first_name']." ".$row['last_name']?>
-                        <form action ="PHP/Profile.php" method ="POST">     
+                        
+                        <form action ="Profile.php" method ="POST">     
                         <input type = "hidden" name ="tID" value = <?php echo $row['user_id']; ?> />
                         <input type = "Submit" name = "tSub" value = <?php echo $name ?> />
                         </form>
@@ -59,8 +62,8 @@ session_start();
             if(!is_logged_in())
             {
 ?>
-<a href = "HTML/Login.html">Login</a>
-        <a href = "HTML/RegistrationForm.html">Register</a>
+<a href = "Login.html">Login</a>
+        <a href = "RegistrationForm.html">Register</a>
 <?php
 
     }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+    </head>
+    <body>
+        <form id="form1" action ="employment.html" method = "POST">
+            <select id = "type0" name = "tTypes">
+            <option>Higher Ed</option>
+            <option>VET</option>
+            <option>TAFE</option>
+            </select>
+           <input id = "degree0" placeholder = "Degree Name" type = "text" name = "tName">  
+            <input id = "uni0" placeholder = "University" type = "text" name = "tUni">
+            <input id = "date0" placeholder = "Date Finished"type = "text" name = "tDate">
+           <span>Still Studying?</span>
+            <input id = "study0" type = "checkbox" name = "tStudy">
+            <input type = "button" name = "tButton" onClick="addQual()" value = "Submit">  
+            <input type = "button" name = "tAdd" onClick = "addMore()" value = "Add More Education">    
+            <input type = "submit" name = "tSubmit" value = "Continue to Employment"> 
+        </form> 
+        <script src = "../JS/addEducation.js"></script>
+
+    </body>
+
+    </html>

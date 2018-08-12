@@ -8,7 +8,20 @@
         else
             return false;
     }
-
+function valid()
+{
+var p=document.getElementById("pass1");
+if((p.value.length)<8)
+{
+alert("minimum length of password should be 8");
+return false;
+}
+if ((p.value.length)>15)
+{
+alert("maximum length of password should be 15");
+return false;
+}
+}
             var conf = document.getElementById("pass2");
         var conf1 = document.getElementById("pass1");
         conf.addEventListener("keyup",function(ev)

@@ -16,7 +16,15 @@ session_start();
     $salt ='$2y$12$' . base64_encode(openssl_random_pseudo_bytes(32));
     $hashed_password = crypt($password,$salt);
     $hashed_conf_password = crypt($cPassword,$salt);
-    if(strcmp($hashed_password,$hashed_conf_password)==0)
+
+If(strlen($password)<8)
+{
+echo ' minimum length should be 8';
+} 
+If(strlen($password)>15)
+{
+echo ' maximum length should be 15';
+}   if(strcmp($hashed_password,$hashed_conf_password)==0)
     {
 		
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);

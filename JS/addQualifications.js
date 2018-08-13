@@ -1,4 +1,35 @@
-    function addQual()
+
+
+
+
+
+
+var size;
+var list;
+var htt;
+function loadUni()
+{
+    console.log("Loading Uni's");
+    htt = new XMLHttpRequest();
+    htt.open("GET","../PHP/getUniversity.php",true);
+    htt.onload= lists;
+    htt.send();
+}
+function lists(ev)
+{
+    list = JSON.parse(htt.responseText);
+    size = list.length
+    var sel=document.getElementById("uni");
+
+    for(var i = 0; i<size; i++)
+    {
+        var opt = document.createElement("Option");
+        opt.innerText= list[i].University_name;
+        console.log(list[i].University_name);
+        sel.appendChild(opt);
+    }
+}
+function addQual()
     {
         var forms = document.getElementById("form1");
         
@@ -29,9 +60,7 @@
         degrees.setAttribute("id","degree");
         degrees.setAttribute("name","tName");
 
-        var uni = document.createElement("input");
-        uni.setAttribute("type","text");
-        uni.setAttribute("placeholder","University");
+        var uni = document.createElement("select");
         uni.setAttribute("id","uni");
         uni.setAttribute("name","tUni");
 
@@ -58,6 +87,7 @@
         but.setAttribute("value","Add Qualification");
         but.setAttribute("name","Add Qualification");
         but.setAttribute("onClick","addTheQual()");
+        loadUni();
         
         forms.appendChild(h);
 
@@ -83,23 +113,23 @@
 
         function addTheQual()
     {
-        var typeArr = [];
-        var degArr= [];
-        var uniArr= [];
-        var dateArr=[];
-        var studyArr = [];
-        typeArr[0]=document.getElementById("type").value;
-        degArr[0]=document.getElementById("degree").value;
-        uniArr[0]=document.getElementById("uni").value;
-        dateArr[0]=document.getElementById("date").value;
+        var typeArr;
+        var degArr;
+        var uniArr;
+        var dateArr;
+        var studyArr;
+        typeArr=document.getElementById("type").value;
+        degArr=document.getElementById("degree").value;
+        uniArr=document.getElementById("uni").value;
+        dateArr=document.getElementById("date").value;
 
         if(document.getElementById("study").checked)
         {
-            studyArr[0]=1;
+            studyArr=1;
         }
         if(!document.getElementById("study").checked)
         {
-            studyArr[0]=0;
+            studyArr=0;
         }
 
         var htts;
@@ -111,7 +141,8 @@
         hID.uniData=uniArr;
         hID.dateData=dateArr;
         hID.studyData=studyArr;
-        hID.lengths =1;
+        //hID.lengths =1;
         htts.send(JSON.stringify(hID));
        location.reload();
     }
+    

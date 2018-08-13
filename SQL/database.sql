@@ -40,19 +40,33 @@ CREATE TABLE Qualification
     qualification_type VARCHAR(100),
     qualification_name VARCHAR(100) NOT NULL,
     end_date VARCHAR(15),
-    finished int,
-    Uni VARCHAR(100)
+    finished int
 
 );
+
+CREATE TABLE University
+(
+    University_id INT PRIMARY KEY AUTO_INCREMENT,
+    University_name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO University(University_name) VALUES
+    ("Federation University Australia"),
+    ("Monash University"),
+    ("Deakin University"),
+    ("University of Melbourne"),
+    ("Australian Catholic University"),
+     ("University of Sydney");
 
 CREATE TABLE Study
 (
     user_id INT,
     qualification_id INT,
+    University_id INT,
     PRIMARY KEY(user_id,qualification_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id)
-
+    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id),
+    FOREIGN KEY (University_id) REFERENCES University(University_id)
 );
 CREATE TABLE Employment
 (

@@ -33,24 +33,36 @@ require_once "default.php";
         echo "</p>";
         echo "Email: ". $row['email'];
 
-        $query = "SELECT qualification.qualification_id,qualification.qualification_name,qualification.qualification_type, qualification.Uni,qualification.end_date, qualification.finished  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
+        $query = "SELECT qualification.qualification_id,qualification.qualification_name,qualification.qualification_type,qualification.end_date, qualification.finished  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
         $stmt= mysqli_prepare($conn,$query);
         mysqli_stmt_bind_param($stmt,"d",$user_id);
 
         $success = mysqli_stmt_execute($stmt);
         $results = mysqli_stmt_get_result($stmt);
+
+        $query2 = "SELECT University.university_id,University.university_name  FROM University INNER JOIN Study ON University.university_id=Study.university_id WHERE Study.user_id = ? ;";
+        $stmt2= mysqli_prepare($conn,$query2);
+        mysqli_stmt_bind_param($stmt2,"d",$user_id);
+
+        $success2 = mysqli_stmt_execute($stmt2);
+        $results2 = mysqli_stmt_get_result($stmt2);
+        $row2;
+        
         // $row1 = mysqli_fetch_assoc($results);
         echo "<h1>Education</h1>";
         while($row1=mysqli_fetch_assoc($results))
         {
-            if($row1['finished']==1)
-            {
-                echo "Still Studying: ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']."</p>";
+            if($row2=mysqli_fetch_assoc($results2)){
+                if($row1['finished']==1)
+                {
+                    echo "Still Studying: ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row2['university_name']."</p>";
+                }
+                else
+                {
+                    echo "Completed ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row2['university_name']." finished at ".$row1['end_date']."</p>";
+                }
             }
-            else
-            {
-                echo "Completed ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row1['Uni']." finished at ".$row1['end_date']."</p>";
-            }
+        
 ?>
             <!-- <input id =<?php echo $row1['qualification_id']?>  type = "button" name = "qualUpdate" value = "Update" onClick="updateQual(this.id)"/> -->
 <?php

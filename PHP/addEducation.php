@@ -13,32 +13,37 @@ session_start();
     $uniID = $req_obj->uniData;
     $dateID = $req_obj->dateData;
     $studyID = $req_obj->studyData;
-    $length = $req_obj->lengths;
+    
     $userid = logged_in_user();
 		
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
-    $query = "INSERT INTO Qualification (qualification_type,qualification_name,end_date,finished,Uni) VALUES (?,?,?,?,?);";
-    
-    $i = 0;
-    while($i<$length)
-    {
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt,"sssds",$typeID[$i],$degID[$i],$dateID[$i],$studyID[$i],$uniID[$i]);
+    $query = "INSERT INTO Qualification (qualification_type,qualification_name,end_date,finished) VALUES (?,?,?,?);"; 
 
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
-        $last_id = mysqli_insert_id($conn);
-    
-        $query1 = "INSERT INTO Study(user_id,qualification_id) VALUES (?,?);";
-        $stmt1 = mysqli_prepare($conn, $query1);
-        mysqli_stmt_bind_param($stmt1,"dd", $userid,$last_id);
 
-        $success1 = mysqli_stmt_execute($stmt1);
-        $results1 = mysqli_stmt_get_result($stmt1);
-        $i++;
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt,"sssd",$typeID,$degID,$dateID,$studyID);
+
+    $success = mysqli_stmt_execute($stmt);
+    $results = mysqli_stmt_get_result($stmt);
+    $last_id = mysqli_insert_id($conn);
+
+    $query2 = "SELECT University_id FROM University WHERE University_Name = ?;";
+    $stmt2 = mysqli_prepare($conn,$query2);
+    mysqli_stmt_bind_param($stmt2,"s",$uniID);
+    $success2 = mysqli_stmt_execute($stmt2);
+    $results2 = mysqli_stmt_get_result($stmt2);
+    $row2 =mysqli_fetch_assoc($results2);
+    $unID = $row2['University_id'];
+
+    $query1 = "INSERT INTO Study(user_id,qualification_id,University_id) VALUES (?,?,?);";
+    $stmt1 = mysqli_prepare($conn, $query1);
+    mysqli_stmt_bind_param($stmt1,"ddd", $userid,$last_id,$unID);
+
+    $success1 = mysqli_stmt_execute($stmt1);
+    $results1 = mysqli_stmt_get_result($stmt1);
+      
 		
 
-    }
 
     
 

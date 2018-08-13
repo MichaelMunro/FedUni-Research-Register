@@ -1,4 +1,46 @@
-            var num = 1;
+            
+            
+var num = 1;
+var start = 1
+            var size;
+            var list;
+            var htt;
+            loadUni();
+            function loadUni()
+            {
+                console.log("Loading Uni's");
+                htt = new XMLHttpRequest();
+                htt.open("GET","../PHP/getUniversity.php",true);
+                htt.onload= lists;
+                htt.send();
+            }
+
+            function lists(ev)
+            {
+                list = JSON.parse(htt.responseText);
+                size = list.length
+                var sel;
+                console.log(num);
+                if(start ==1)
+                    {
+                        console.log("whats Up");
+                        sel = document.getElementById("uni0");
+                        start--;
+                    }
+                else 
+                    {
+                        var c = num;
+                        console.log("ELse uni"+num);
+                        sel = document.getElementById("uni"+ --c);
+                    }
+                for(var i = 0; i<size; i++)
+                {
+                    var opt = document.createElement("Option");
+                    opt.innerText= list[i].University_name;
+                    console.log(list[i].University_name);
+                    sel.appendChild(opt);
+                }
+            }
 
             function addMore()
             {
@@ -30,11 +72,10 @@
                 degrees.setAttribute("id","degree"+num);
                 degrees.setAttribute("name","tName");
 
-                var uni = document.createElement("input");
-                uni.setAttribute("type","text");
-                uni.setAttribute("placeholder","University");
+                var uni = document.createElement("select");
                 uni.setAttribute("id","uni"+num);
                 uni.setAttribute("name","tUni");
+                console.log("adding uni"+num);
 
                 var dates = document.createElement("input");
                 dates.setAttribute("type","text");
@@ -52,7 +93,7 @@
 
                 var h = document.createElement("P");
                 h.setAttribute("id","para"+num);
-
+                loadUni();
                 forms.appendChild(h);
 
                 forms.appendChild(types);
@@ -61,6 +102,7 @@
                 forms.appendChild(dates);
                 forms.appendChild(span);
                 forms.appendChild(stud);
+                
                 num++;
             }
 
@@ -76,6 +118,7 @@
                     typeArr[i]=document.getElementById("type"+i).value;
                     degArr[i]=document.getElementById("degree"+i).value;
                     uniArr[i]=document.getElementById("uni"+i).value;
+                    console.log("Uni is "+uniArr[i]);
                     dateArr[i]=document.getElementById("date"+i).value;
                     if(document.getElementById("study"+i).checked)
                     {

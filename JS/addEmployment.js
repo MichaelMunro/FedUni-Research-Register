@@ -105,29 +105,29 @@
 
     function addTheEmp()
     {
-        var typeArr = [];
-        var titleArr= [];
-        var manNArr= [];
-        var manPArr=[];
-        var orgArr = [];
-        var startArr= [];
-        var endArr=[];
-        var taskArr = [];
+        var typeArr;
+        var titleAr;
+        var manNArr;
+        var manPArr;
+        var orgArr ;
+        var startArr;
+        var endArr;
+        var taskArr;
 
-        typeArr[0]=document.getElementById("types").value;
-        titleArr[0]=document.getElementById("title").value;
-        manNArr[0]=document.getElementById("manager").value;
-        manPArr[0]=document.getElementById("managerPhone").value;
-        orgArr[0]=document.getElementById("org").value;
-        startArr[0]=document.getElementById("startDate").value;
-        endArr[0]=document.getElementById("endDate").value;
-        taskArr[0]=document.getElementById("tasks").value;
+        typeArr=document.getElementById("types").value;
+        titleArr=document.getElementById("title").value;
+        manNArr=document.getElementById("manager").value;
+        manPArr=document.getElementById("managerPhone").value;
+        orgArr=document.getElementById("org").value;
+        startArr=document.getElementById("startDate").value;
+        endArr=document.getElementById("endDate").value;
+        taskArr=document.getElementById("tasks").value;
                                 
         
 
         var htts;
         htts = new XMLHttpRequest();
-        htts.open("POST","addEmployment.php",true);
+        htts.open("POST","../PHP/addEmployment.php",true);
         var hID = {};
         hID.typeData= typeArr; 
         hID.titleData=titleArr;
@@ -137,7 +137,7 @@
         hID.startData=startArr;
         hID.endData=endArr;
         hID.taskData=taskArr;
-        hID.lengths =1;
+        
         htts.send(JSON.stringify(hID));
         location.reload();
     }

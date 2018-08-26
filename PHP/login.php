@@ -9,7 +9,7 @@ require_once "default.php";
 	if($email and $password)
 	{
 		$conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
-		$query = "SELECT user_id,first_name,email,password,permission FROM users WHERE email=?;";
+		$query = "SELECT user_id,first_name,email,password,permission,uniWork FROM users WHERE email=?;";
 		$stmt= mysqli_prepare($conn,$query);
 		mysqli_stmt_bind_param($stmt,"s",$email);
 		$success = mysqli_stmt_execute($stmt);
@@ -28,6 +28,7 @@ require_once "default.php";
                 $dbFName=$row['first_name'];
 				$dbID=$row['user_id'];
 				$perm = $row['permission'];
+				$work = $row['uniWork'];
 				$hashed_password = crypt($password,$db_password);
 				if($db_password === $hashed_password)
 				{
@@ -36,8 +37,8 @@ require_once "default.php";
                     loginName($dbFName);
 					login($dbID);
 					setPermission($perm);
-
-					header('Location: ../index.php');
+					setWork($work);
+					header('Location: ../home.php');
 					exit;
 				}
                 				else

@@ -2,9 +2,13 @@
             var sizes;
             var lists;
             var sel = document.getElementById('category');
+            var skillForms = document.getElementById("form10");
+            
+            console.log("LOOKING");
             getList("Psychology");
             sel.addEventListener('change',function(ev)
             {
+                console.log("This was " +sel.options[sel.selectedIndex].text);
                 
                 getList(sel.options[sel.selectedIndex].text);
             },false)
@@ -14,7 +18,7 @@
                 for(var i = 0; i<sizes;i++)
                 {
 
-                    var myNode = document.getElementById("form");
+                    var myNode = document.getElementById("form10");
                     while (myNode.firstChild) {
                         myNode.removeChild(myNode.firstChild);
     }
@@ -26,118 +30,107 @@
             {
                 clear();
                 htt = new XMLHttpRequest();
-                var r={};
-                r.pageID= 1;
                 console.log(d);
+                var r = {};
                 r.category = d;
-                htt.open("POST","../PHP/getSpecific.php",true);
-                htt.onload= list;
+                htt.open("POST","PHP/getSpecific.php",true);
+                htt.onload= listy;
                 htt.send(JSON.stringify(r));
             } 
-            var x = document.getElementById("form");
-            function list(ev)
+            var x = document.getElementById("form10");
+            function listy(ev)
             {
+                console.log("Show specific");
                 lists = JSON.parse(htt.responseText);
-                size=lists.length;
-                sizes = size;
-                for( var i = 0; i<size;i++)
+                sizes = lists.length;
+                for(var i = 0;i<sizes;i++)
                 {
+                    var skillNames = document.createTextNode(lists[i].skill_name);
                     
-                    var inp = document.createElement("input");
-                    inp.setAttribute("type","checkbox");
-                    inp.setAttribute("id","skill"+i);
-                                        var y = document.createElement("select");
-                    y.setAttribute("name","picks");
-                    y.setAttribute("id","pick"+i);
+                    var skillHids = document.createElement("input");
+                    skillHids.setAttribute("type","hidden");
+                    skillHids.setAttribute("id","hids"+i);
+                    skillHids.setAttribute("value",lists[i].skill_id);
 
-                    var low = document.createElement("Option");
-                    low.innerHTML="Low";
-                    low.value="Low";
-                    var mid = document.createElement("Option");
-                    mid.innerHTML="Medium";
-                    mid.value="Medium";
-                    var high = document.createElement("Option");
-                    high.innerHTML="High";
-                    high.value="High";
-                    y.style.display="none";
-                    y.appendChild(low);
-                    y.appendChild(mid);
-                    y.appendChild(high);
-                    inp.setAttribute("value",lists[i].skill_id);
-                    x.appendChild(inp);
-                    inp.addEventListener('click',function(ev)
-                    {
-                        console.log();
-                        var str = event.target.id;
-                        var res = str.replace("skill","pick");
-                        doSomething(res);
+                    var lowRads = document.createElement("input");
+                    lowRads.setAttribute("id","lows"+i);
+                    lowRads.setAttribute("type","radio");
+                    lowRads.setAttribute("name","tRadios"+i);
+                    lowRads.setAttribute("value","Low");
                     
-                    },false);
+                    var lows =document.createTextNode("Low");
+                    
+                    
+                    var medRads = document.createElement("input");
+                    medRads.setAttribute("id","lows"+i);
+                    medRads.setAttribute("type","radio");
+                    medRads.setAttribute("name","tRadios"+i);
+                    medRads.setAttribute("value","Medium");
+                    
+                    var meds =document.createTextNode("Medium");
 
-                    var h = document.createElement("P");
-                    h.setAttribute("id","para"+i);
-                    var t = document.createTextNode(lists[i].skill_name);
+                    var highRads = document.createElement("input");
+                    highRads.setAttribute("id","lows"+i);
+                    highRads.setAttribute("type","radio");
+                    highRads.setAttribute("name","tRadios"+i);
+                    highRads.setAttribute("value","High");
+                    
+                    var highs =document.createTextNode("High");
 
-                    x.appendChild(t);
-                    x.appendChild(h);
-                    x.appendChild(y);
+                    skillForms.appendChild(skillNames);
+                    skillForms.appendChild(skillHids);
+                    skillForms.appendChild(lowRads);
+                    skillForms.appendChild(lows);
+                    skillForms.appendChild(medRads);
+                    skillForms.appendChild(meds);
+                    skillForms.appendChild(highRads);
+                    skillForms.appendChild(highs);
+                    skillForms.appendChild(document.createElement("P"));
                 }
-                function doSomething(z)
-                {
-                    console.log(z);
-                    var g= document.getElementById(z);
-                    if (g.style.display=="block")
-                    {
-                        g.style.display= "none";
-                    }
-                    else{
-                        g.style.display ="block";
-                    }
-                    console.log(g.value);
-                }
-                            var button = document.createElement("input");
-            button.setAttribute("id","Button");
-            button.setAttribute("type","Button");
-            button.setAttribute("value","Add Skills");
-            button.setAttribute("onclick","test()");
-            x.appendChild(button);
 
-                var but=document.createElement("input");
-                but.setAttribute("type","submit");
-                but.setAttribute("id","sub");
-                but.setAttribute("name","submitButton");
-                but.setAttribute("value","Continue");
-                x.appendChild(but);
+                var specBut = document.createElement("input");
+                specBut.setAttribute("type","button");
+                specBut.setAttribute("class","button");
+                specBut.setAttribute("onClick","addSpecificSkills()");
+                specBut.setAttribute('value',"Add");
+                skillForms.appendChild(specBut);
 
             }
 
 
-            function test()
+            function addSpecificSkills()
             {
-             
-                var s = 0;
-                var g=0
-                var array= [];
-                var arr=[];
-
-                while(s<sizes)
+                var counts = 0;
+                var arrays= [];
+                var arrs=[];
+                while(counts<sizes)
                 {
-                    var t = document.getElementById("skill"+s);
-                    if(t.checked)
-                    {
-                        array[g] = t.value;
-                        arr[g]=document.getElementById("pick"+s).value
-                        g++;
-                    }
-                    s++;
+                    
+                    var x = document.getElementsByName("tRadios"+counts);
+ 
+                    for(var i = 0; i<x.length;i++)
+                        {
+                            
+                            if(x[i].checked)
+                                {
+                                    arrays[counts] = document.getElementById("hids"+counts).value;
+                                    arrs[counts]= x[i].value;
+                                    console.log([i].value);
+                                    //console.log("arrs["+count+ "] is "+arrs[counts]);
+                                }
+
+                        }
+
+                        counts++;
+
                 }
                 var htts;
                 htts = new XMLHttpRequest();
-                htts.open("POST","../PHP/sign.php",true);
-                var hID = {};
-                hID.checkData= array; 
-                hID.skillData=arr;
-                hID.lengths =array.length;
-                htts.send(JSON.stringify(hID));
-                alert(g+ " Skill(s) have been added");
+                htts.open("POST","PHP/sign.php",true);
+                var hIDs = {};
+                hIDs.checkData= arrays; 
+                hIDs.skillData=arrs;
+                hIDs.lengths =arrays.length;
+                htts.send(JSON.stringify(hIDs));
+                
             }

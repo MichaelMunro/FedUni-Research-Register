@@ -1,24 +1,26 @@
             
             
-var num = 1;
-var start = 1
+        var num = 1;
+            var start = 1
             var size;
             var list;
-            var htt;
+            var httd;
             loadUni();
             function loadUni()
             {
                 console.log("Loading Uni's");
-                htt = new XMLHttpRequest();
-                htt.open("GET","../PHP/getUniversity.php",true);
-                htt.onload= lists;
-                htt.send();
+                httd = new XMLHttpRequest();
+                httd.open("GET","PHP/getUniversity.php",true);
+                httd.onload= lists;
+                httd.send();
             }
 
             function lists(ev)
             {
-                list = JSON.parse(htt.responseText);
-                size = list.length
+
+                list = JSON.parse(httd.responseText);
+                size = list.length;
+                console.log("Size is "+size);
                 var sel;
                 console.log(num);
                 if(start ==1)
@@ -45,39 +47,38 @@ var start = 1
             function addQual()
             {
                 var typeArr = document.getElementById("type0").value;
+               // console.log(typeArr);
                 var degArr= document.getElementById("degree0").value;
                 var uniArr= document.getElementById("uni0").value;
                 var dateArr=document.getElementById("date0").value;
-                var studyArr;
-                    if(document.getElementById("study0").checked)
-                    {
-                        studyArr=1;
-                    }
-                    if(!document.getElementById("study0").checked)
-                    {
-                        studyArr=0;
-                    }
+                var studyArr=document.getElementById("study0").value;
+                console.log(studyArr);
+
                                          
                 var htts;
                 htts = new XMLHttpRequest();
-                htts.open("POST","../PHP/addEducation.php",true);
+                htts.open("POST","PHP/addEducation.php",true);
                 var hID = {};
                 hID.typeData= typeArr; 
                 hID.degData=degArr;
                 hID.uniData=uniArr;
                 hID.dateData=dateArr;
                 hID.studyData=studyArr;
-                
-                htts.send(JSON.stringify(hID));
-                alert("courses have been added");
-                reset()
+                reset();
+                htts.send(JSON.stringify(hID));  
+                                document.getElementById("type0").getElementsByTagName('option')[0].selected='selected';
+                document.getElementById("degree0").value="";
+                document.getElementById("uni0").getElementsByTagName('option')[0].selected='selected';
+                document.getElementById("date0").value="";
+                document.getElementById("study0").getElementsByTagName('option')[0].selected='selected';              
             }
             function reset()
             {
+                console.log("resetting");
                 document.getElementById("type0").getElementsByTagName('option')[0].selected='selected';
                 document.getElementById("degree0").value="";
                 document.getElementById("uni0").getElementsByTagName('option')[0].selected='selected';
                 document.getElementById("date0").value="";
-                document.getElementById("study0").checked = false;
+                document.getElementById("study0").getElementsByTagName('option')[0].selected='selected';
                 
             }

@@ -21,7 +21,7 @@
 	{
 		$_SESSION['email']=$email;
 	}
-		function getEmail() {
+	function getEmail() {
 	return $_SESSION['email'];
 }
 	function is_logged_in() 
@@ -42,5 +42,13 @@
 	function getPermission()
 	{
 		return $_SESSION['perm'];
+	}
+	function setWork($work)
+	{
+		$_SESSION['work']=$work;
+	}
+	function getWork()
+	{
+		return $_SESSION['work'];
 	}
 ?>

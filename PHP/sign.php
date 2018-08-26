@@ -11,6 +11,7 @@ session_start();
     $checkID = $req_obj->checkData;
     $skillID = $req_obj->skillData;
     $userid = logged_in_user();
+  // $userid = 1;
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
     $query= "INSERT INTO user_skills(user_id,skill_id,skill_level) VALUES(?,?,?);";
     $x = $req_obj->lengths;

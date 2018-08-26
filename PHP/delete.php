@@ -22,6 +22,16 @@ require_once "default.php";
     mysqli_stmt_bind_param($stmt,"d",$id);
     $success = mysqli_stmt_execute($stmt);
 
+    $query = "DELETE FROM User_Interests WHERE user_id = ?;";
+    $stmt= mysqli_prepare($conn,$query);
+    mysqli_stmt_bind_param($stmt,"d",$id);
+    $success = mysqli_stmt_execute($stmt);
+
+    $query = "DELETE FROM Availability WHERE user_id = ?;";
+    $stmt= mysqli_prepare($conn,$query);
+    mysqli_stmt_bind_param($stmt,"d",$id);
+    $success = mysqli_stmt_execute($stmt);
+
     $query = "DELETE FROM users WHERE user_id = ?;";
     $stmt= mysqli_prepare($conn,$query);
     mysqli_stmt_bind_param($stmt,"d",$id);
@@ -32,7 +42,7 @@ require_once "default.php";
     if($success)
     {
         logout();
-        header('Location: ../index.php');
+        header('Location: ../index.html');
     }
     else{
         echo $id;

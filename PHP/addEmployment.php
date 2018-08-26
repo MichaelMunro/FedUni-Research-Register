@@ -21,7 +21,7 @@ session_start();
     $taskID = $req_obj->taskData;
 
     $userid = logged_in_user();
-		
+	//$userid=1;	
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
     $query = "INSERT INTO Employment(work_rate,position_title,manager,manager_phone,organisation,startDate,endDate,tasks) VALUES (?,?,?,?,?,?,?,?);";
     

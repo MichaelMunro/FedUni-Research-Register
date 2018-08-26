@@ -14,7 +14,9 @@ session_start();
     $dateID = $req_obj->dateData;
     $studyID = $req_obj->studyData;
     
-    $userid = logged_in_user();
+   $userid = logged_in_user();
+
+   
 		
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
     $query = "INSERT INTO Qualification (qualification_type,qualification_name,end_date,finished) VALUES (?,?,?,?);"; 

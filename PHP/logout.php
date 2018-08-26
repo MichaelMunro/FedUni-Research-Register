@@ -6,5 +6,5 @@ require_once "default.php";
 <?php
 
 	logout();
-	header('Location: ../index.php');
+	header('Location: ../index.html');
 ?>

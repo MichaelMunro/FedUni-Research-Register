@@ -7,17 +7,15 @@
     $req_obj = json_decode($req);
 
     $json_result= array();
-    $page = $req_obj->pageID;
+    
    
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
     
     
     $stmt;
-        $a = "General";
-        $b = "Research";
-        $query="SELECT * FROM skills WHERE  skill_type = ? OR skill_type =?;";
+        $query="SELECT DISTINCT skill_type FROM Skills;";
         $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"ss",$a,$b);
+     
     
 
     $success = mysqli_stmt_execute($stmt);

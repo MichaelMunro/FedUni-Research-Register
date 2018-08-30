@@ -33,8 +33,6 @@ CREATE TABLE Users
 INSERT INTO Users(title,first_name,middle_name,last_name,email,address,phone_number,password,day_dob,month_dob,year_dob,permission,uniWork) VALUES 
     ("Dr","Michael","Admin","Admin","michael@test","Admin",0123441,"$2y$12$0SM7zfbupHNhD8Vu6iBCVeunUIdzdXL.6HmTsT7ZSvh3qrK/zVhsK",12,"October",1990,0,0),
     ("Dr","Admin","Admin","Admin","Admin@test","Admin",0123441,"$2y$12$0SM7zfbupHNhD8Vu6iBCVeunUIdzdXL.6HmTsT7ZSvh3qrK/zVhsK",12,"October",1990,2,0);
-
--- I'm assuming that many users can have multiple degrees and degrees can have multiple users and grees can have multiple majors and minors--
 CREATE TABLE Qualification
 (
     qualification_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -132,35 +130,6 @@ CREATE TABLE User_Files
    FOREIGN KEY (file_id) REFERENCES files(file_id)
 );
 
-CREATE TABLE Interests
-(
-    interest_id INT PRIMARY KEY AUTO_INCREMENT,
-    interest_name VARCHAR(100)
-);
-
-CREATE TABLE User_Interests
-(
-    user_id INT,
-    interest_id INT,
-    PRIMARY KEY(user_id,interest_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (interest_id) REFERENCES Interests(interest_id)
-);
-
-CREATE TABLE Availability
-(
-    availability_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT,
-    sunday float DEFAULT 0,
-    monday float DEFAULT 0,
-    tuesday float DEFAULT 0,
-    wednesday float DEFAULT 0,
-    thursday float DEFAULT 0,
-    friday float DEFAULT 0,
-    saturday float DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
-);
-
 INSERT INTO Skills(skill_name,skill_type) VALUES
 
     ("Use of normal Microsoft range of programs","General"),
@@ -201,17 +170,6 @@ INSERT INTO Skills(skill_name,skill_type) VALUES
     ("Networking","Information Technology"),
     ("Games Design","Information Technology");
 
-
-INSERT INTO Interests(interest_name) VALUES
-    ("Information Technology"),
-    ("Nursing"),
-    ("Psychology"),
-    ("Engineering"),
-    ("Education");
-
-    INSERT INTO Availability(user_id,sunday,monday,tuesday,wednesday,thursday,friday,saturday) VALUES
-    (1,0,0,0,0,0,0,0),
-    (2,0,0,0,0,0,0,0);
 
 
 

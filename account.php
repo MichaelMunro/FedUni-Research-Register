@@ -11,7 +11,7 @@ require_once "PHP/default.php";
 	     <?php
 $user_id = logged_in_user(); 
 ?>
-	<title>Registration Form
+	<title>Account Settings
 	</title>
 	<div data-gjs="navbar" class="navbar">
 		<div class="navbar-container">
@@ -55,12 +55,12 @@ $user_id = logged_in_user();
 			</div>
 			<div data-tabs="1" id="iitw8i">
 				<nav data-tab-container="1" class="tab-container">
-					<a href="#education-tab" data-tab="1" class="tab">Password
-					</a>
-					<a href="#employment-tab" data-tab="1" class="tab">Removal
+					<!--<a href="#password-tab" data-tab="1" class="tab">Password
+					</a>-->
+					<a href="#removal-tab" data-tab="1" class="tab">Removal
 					</a>
 				</nav>
-				<div id="education-tab" data-tab-content="1" class="tab-content">
+				<!--<div id="password-tab" data-tab-content="1" class="tab-content">
 					<div id="tab-title" class="c15657">
 					</div>
 					<div id="tab-row" class="row">
@@ -86,8 +86,8 @@ $user_id = logged_in_user();
 						<div id="bootstable-cell" class="cell c12511">
 						</div>
 					</div>
-				</div>
-				<div id="employment-tab" data-tab-content="1" class="tab-content">
+				</div>-->
+				<div id="removal-tab" data-tab-content="1" class="tab-content">
 					<div id="tab-title" class="c15657">
 					</div>
 					<div id="tab-row" class="row">

@@ -194,7 +194,8 @@ require_once "PHP/default.php";
 				  </div>
 				  <div id="tab-row" class="row">
 					 <div id="form-cell" class="cell">
-						 <form class="form"id = "form0">
+						 <form class="form"id = "form0" style="text-align: left; width:600px; ">
+
 						   <script src  = "JS/skills.js"></script>
 						   <div class="form-group"><button type="button" onClick="addGeneralSkill()" class="button">Add</button></div> 
 						
@@ -226,13 +227,12 @@ require_once "PHP/default.php";
 				  </div>
 				  <div id="tab-row" class="row">
 					 <div id="form-cell" class="cell">					 
-						   <form id = "forms" class= "form">
+						   <form id = "forms" class= "form" style="text-align: left; width:600px">
 							  Discipline: <select id = "category" name = "tCategory">
-								  <option>Psychology</option>
-								  <option>Information Technology</option>
+
 							  </select></p>
 							  </form>
-						  <form id = "form10" class = "form">
+						  <form id = "form10" class = "form" style="text-align: left; width:600px">
 							<script src = "JS/specificSkills.js"></script>
 							  </form>
 							  <?php
@@ -284,7 +284,7 @@ require_once "PHP/default.php";
 			   </div>
 			   			   </div>
 			</div>
-			<div class="c14791">Footer
+			<div class="c14791"> <!--footer -->
 			</div>
 		 </div>
 	  </div>

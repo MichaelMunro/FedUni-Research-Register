@@ -10,7 +10,7 @@ require_once "PHP/default.php";
       <link rel="stylesheet" href="css/style2.css">
    </head>
    <body>
-      <title>Registration Form</title>
+      <title>View Profile</title>
       <?php
       $user_id = $_POST['tID'];
       $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
@@ -89,7 +89,6 @@ require_once "PHP/default.php";
         $results2 = mysqli_stmt_get_result($stmt2);
         $row2;
         
-        // $row1 = mysqli_fetch_assoc($results);
         echo "<h1>Education</h1>";
         while($row1=mysqli_fetch_assoc($results))
         {
@@ -139,31 +138,10 @@ require_once "PHP/default.php";
             echo $row1['skill_name']. " at ".$row1['skill_level']."</p>";
         }
 
-         $query = "SELECT Interests.interest_name FROM Interests INNER JOIN User_Interests ON User_Interests.interest_id=Interests.interest_id WHERE User_Interests.user_id=?;";
-        $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"d",$user_id);
 
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
         
 
-        echo "<h1>Interests</h1>";
-        while($row = mysqli_fetch_assoc($results))
-        {
-            echo $row['interest_name'];
-            echo "</p>";
-        }
-        $query = "SELECT * FROM Availability WHERE user_id=?;";
-								$stmt= mysqli_prepare($conn,$query);
-								mysqli_stmt_bind_param($stmt,"d",$user_id);
 
-								$success = mysqli_stmt_execute($stmt);
-								$results = mysqli_stmt_get_result($stmt);
-								$row = mysqli_fetch_assoc($results);
-
-								echo "<h1>Availability</h1>";
-								echo "Sunday: ".$row['sunday']."</p>Monday: ".$row['monday']."</p>Tuesday: ".$row['tuesday']."</p>Wednesdayday: ".$row['wednesday']."</p>Thursday: ".$row['thursday']."</p>Friday: ".$row['friday']."</p>Saturday: ".$row['saturday'];
-								
                 ?>
             </div>
             <div class="c14791">Footer

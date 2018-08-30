@@ -31,17 +31,11 @@ else
         loginEmail($email);
         setPermission($perm);
         setWork($work);
-        $zero = 0;
-        $query1 = "INSERT INTO Availability(user_id,sunday,monday,tuesday,wednesday,thursday,friday,saturday) VALUES(?,?,?,?,?,?,?,?);";
-        $stmt1 = mysqli_prepare($conn, $query1);
-        mysqli_stmt_bind_param($stmt1, "dddddddd", $last_id, $zero, $zero, $zero, $zero, $zero, $zero, $zero);
-        $success = mysqli_stmt_execute($stmt1);
-        $results = mysqli_stmt_get_result($stmt1);
     
     if ($success) {
         header('Location: ../profile.php');
     } }
     else {
         echo "password don't match";
-    } ?> <form action = "../HTML/RegistrationForm.html" method = "POST"> <input type = "Submit" name= "back" value =="Go back"/> </form> <script src = "../JS/alerts.js"></script> <?php
+    } ?> <form action = "index.html" method = "POST"> <input type = "Submit" name= "back" value =="Go back"/> </form> <script src = "../JS/alerts.js"></script> <?php
 } ?>

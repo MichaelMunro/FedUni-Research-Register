@@ -4,7 +4,6 @@
             function addEmp()
             {
                 var typeArr = document.getElementById("type1").value;
-                console.log(typeArr);
                 var titleArr= document.getElementById("title1").value;
                 var manNArr= document.getElementById("manager1").value;
                 var manPArr=document.getElementById("managerPhone1").value;

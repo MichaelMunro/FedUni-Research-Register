@@ -1,9 +1,3 @@
-
-
-
-
-
-
 var size;
 var list;
 var htt;
@@ -25,7 +19,6 @@ function lists(ev)
     {
         var opt = document.createElement("Option");
         opt.innerText= list[i].University_name;
-        console.log(list[i].University_name);
         sel.appendChild(opt);
     }
 }
@@ -111,7 +104,7 @@ function addQual()
         document.getElementById("addBut").parentNode.removeChild(document.getElementById("addBut"));
     }
 
-        function addTheQual()
+    function addTheQual()
     {
         var typeArr;
         var degArr;
@@ -141,8 +134,7 @@ function addQual()
         hID.uniData=uniArr;
         hID.dateData=dateArr;
         hID.studyData=studyArr;
-        //hID.lengths =1;
         htts.send(JSON.stringify(hID));
-       location.reload();
+        location.reload();
     }
     

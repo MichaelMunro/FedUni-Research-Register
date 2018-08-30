@@ -10,7 +10,7 @@ require_once "PHP/default.php";
 		<meta charset="utf-8"><link rel="stylesheet" href="./css/style2.css">
 	</head>
 	<body>
-		<title>Account Settings
+		<title>Dashboard
 		</title>
 		<?php
 		  $user_id = logged_in_user(); 
@@ -51,21 +51,38 @@ require_once "PHP/default.php";
             </div>
         </div>
     </div>
-		<div id="ii4vcy" class="row c3690"><div id="iuxvnm" class="cell">
-			<div class="c13731">Dashboard
-			</div>
-				<div id="form-cell" class="cell">
-				<?php
+	<?php
 				if(getPermission() ==1 || getPermission()==2)
         		{
-                $query = "SELECT * FROM Users;";
-                $stmt= mysqli_prepare($conn,$query);
-    
-                $success = mysqli_stmt_execute($stmt);
-                $results = mysqli_stmt_get_result($stmt);
+		?>
+					<div id="ii4vcy" class="row c3690">
+         	<div id="iuxvnm" class="cell">
+            <div class="c13731">Dashboard
+            </div>
+            <div data-tabs="1" id="iitw8i">
+               <nav data-tab-container="1" class="tab-container">
+					<a href="#users-tab" data-tab="1" class="tab">Users
+					</a>
+					<a href="#skill-tab" data-tab="1" class="tab">Skills Management
+					</a>
+					<a href="#category-tab" data-tab="1" class="tab">Category Management
+					</a>
+				</nav>
+				<div id="users-tab" data-tab-content="1" class="tab-content">
+
+				  <div id="tab-row" class="row">
+					 <div id="form-cell" class="cell">
+						
+						<?php
+						
+					$query = "SELECT * FROM Users;";
+					$stmt= mysqli_prepare($conn,$query);
+		
+					$success = mysqli_stmt_execute($stmt);
+					$results = mysqli_stmt_get_result($stmt);
                 while($row = mysqli_fetch_assoc($results))
                 {?>
-                        <form action= "viewProfile.php" method = "POST">
+                        <form action= "viewProfile.php"  class = "form"method = "POST">
                        <?php
                         $person =$row['user_id']; 
                         
@@ -73,113 +90,96 @@ require_once "PHP/default.php";
 						?>
                         <input type = "hidden" name ="tID" value = <?php echo $person; ?> />
                         
-                        <input type = "Submit" name = "tSub" value = <?php echo $name ?> />
-                        </p>
-                        </form>
+                        <input type = "Submit" name = "tSub" value = <?php echo $name; ?> />
+						</p>
+						 </form>
+						<?php
+                    }?>
+                        
+                       
 
-                    <?php
-                    }
-				}
-                else
-                {
-                                    $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
+                    
+				
+						
+					 </div>
+				  </div>
+				  <div id="bootstable-row" class="row">
+					 <div id="bootstable-cell" class="cell c12511">
+					 </div>
+				  </div>
+			   </div>
+			   <div id="skill-tab" data-tab-content="1" class="tab-content">
+				  <div id="tab-row" class="row">
+					 <div id="form-cell" class="cell">
+						<form class="form" >
+							<select required="" name="Skill Category" id = "skillCat0" class="select">
+							  <option value="">- Select Category -</option>
+						   </select>
 
-       $query = "SELECT * FROM Users WHERE user_id=?;";
-        $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"d",$user_id);
+						   <input type="text" placeholder = "Enter Skill Name" class="input" id ="skillName0"/>
+							<input type = "button"class = "button" id = "skillBut" onClick= "addSkill()" value = "Add Skill"/>
 
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($results);
+							<script src = "JS/addSkill.js"></script>
+						  </form>
+						  <form class="form" id="addSkillsForm"/>
 
-        echo "<h1>Contact Info</h1>";
+						  </form>
 
-        echo "Full Name: ". $row['title']." ". $row['first_name']." ". $row['middle_name']." ". $row['last_name'];
-        echo "</p>";
-        echo "Email: ". $row['email'];
+					 </div>
+				  </div>
+				  <div id="bootstable-row" class="row">
+					 <div id="bootstable-cell" class="cell c12511">
+					 </div>
+				  </div>
+			   </div>
+			   <div id="category-tab" data-tab-content="1" class="tab-content">
+				  <div id="tab-row" class="row">
+					 <div id="form-cell" class="cell">
+						 <form class="form">
+							<input type="text" placeholder = "Enter Category Name" class="input" id ="catName0"/>
+							<input type="text" placeholder = "Enter Skill Name" class="input" id ="skillName1"/>
+							<input type = "button"class = "button" id = "catBut" onClick= "addCategory()" value = "Add Category"/>
 
-        $query = "SELECT qualification.qualification_id,qualification.qualification_name,qualification.qualification_type,qualification.end_date, qualification.finished  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
-        $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"d",$user_id);
+						  </form>
+						 <form class="form" id = "addCat0">
 
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
+						  </form>
+						 						 
+						  
+					 </div>
+				  </div>
+				  <div id="bootstable-row" class="row">
+					 <div id="bootstable-cell" class="cell c12511">
+					 </div>
+				  </div>
+			   </div>
+			   <div id="specskl-tab" data-tab-content="1" class="tab-content">
+				  <div id="tab-title" class="c15657">
+				  </div>
+				  <div id="tab-row" class="row">
+					 <div id="form-cell" class="cell">					 
+						   <form  class= "form" >
+							  </form>
 
-        $query2 = "SELECT University.university_id,University.university_name  FROM University INNER JOIN Study ON University.university_id=Study.university_id WHERE Study.user_id = ? ;";
-        $stmt2= mysqli_prepare($conn,$query2);
-        mysqli_stmt_bind_param($stmt2,"d",$user_id);
-
-        $success2 = mysqli_stmt_execute($stmt2);
-        $results2 = mysqli_stmt_get_result($stmt2);
-        $row2;
-        
-        // $row1 = mysqli_fetch_assoc($results);
-        echo "<h1>Education</h1>";
-        while($row1=mysqli_fetch_assoc($results))
-        {
-            if($row2=mysqli_fetch_assoc($results2)){
-                if($row1['finished']==0)
-                {
-                    echo "Still Studying: ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row2['university_name']."</p>";
-                }
-                else
-                {
-                    echo "Completed ".$row1['qualification_name']. "(".$row1['qualification_type'].") at ".$row2['university_name']." finished at ".$row1['end_date']."</p>";
-                }
-            }
-        
-?>
-<?php
-
-        }
-        
-?>
-<?php
-        if (getWork()==1)
-        {
-           
-        $query = "SELECT Employment.work_rate, Employment.position_title,Employment.manager,Employment.manager_phone,Employment.organisation,Employment.startDate,employment.endDate,Employment.tasks  FROM Employment INNER JOIN User_Employment ON Employment.employment_id=User_Employment.employment_id WHERE User_Employment.user_id = ? ;";
-        $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"d",$user_id);
-
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
-        echo "<h1>Federation University Employment</h1>";
-        while($row1 = mysqli_fetch_assoc($results))
-        {
-            echo $row1['work_rate']. " ".$row1['position_title']." at ".$row1['organisation']. ".Manager Name: ".$row1['manager'].", Phone: ".$row1['manager_phone'].". Started ".$row1['startDate']." ended: ".$row1['endDate']. ". Performed:". $row1['tasks']."</p>";
-        }
-        }
-        else{
-            echo "I have not worked with the University";
-        }
-?>
-
-
-<?php    
-        $query = "SELECT Skills.skill_name, User_Skills.skill_level  FROM Skills INNER JOIN User_Skills ON Skills.skill_id=User_Skills.skill_id WHERE User_Skills.user_id = ? ;";
-        $stmt= mysqli_prepare($conn,$query);
-        mysqli_stmt_bind_param($stmt,"d",$user_id);
-
-        $success = mysqli_stmt_execute($stmt);
-        $results = mysqli_stmt_get_result($stmt);
-        echo "<h1>Skills</h1>";
-        while($row1 = mysqli_fetch_assoc($results))
-        {
-            echo $row1['skill_name']. " at ".$row1['skill_level']."</p>";
-        }
-
-        
-                
-                }
-?>
-
-                     </div>
+					 </div>
+				  </div>
+				  <div id="bootstable-row" class="row">
+					 <div id="bootstable-cell" class="cell c12511">
+					 </div>
+				  </div>
+			   </div>
 			</div>
-		</div>
-		<script>var items = document.querySelectorAll('#iitw8i');
-			for (var i = 0, len = items.length; i < len; i++) {
-			  (function(){var t,e=this,a="[data-tab]",n=document.body,r=n.matchesSelector||n.webkitMatchesSelector||n.mozMatchesSelector||n.msMatchesSelector,o=function(){var a=e.querySelectorAll("[data-tab-content]")||[];for(t=0;t<a.length;t++)a[t].style.display="none"},i=function(n){var r=e.querySelectorAll(a)||[];for(t=0;t<r.length;t++){var i=r[t],s=i.className.replace("tab-active","").trim();i.className=s}o(),n.className+=" tab-active";var l=n.getAttribute("href"),c=e.querySelector(l);c&&(c.style.display="")},s=e.querySelector(".tab-active"+a);s=s||e.querySelector(a),s&&i(s),e.addEventListener("click",function(t){var e=t.target;r.call(e,a)&&i(e)})}.bind(items[i]))();
-		</script>
+			</div>
+			<div class="c14791"> <!--footer -->
+			</div>
+		 </div>
+	  </div>
+					<?php
+				}?>
+	  <script>var items = document.querySelectorAll('#iitw8i');
+		 for (var i = 0, len = items.length; i < len; i++) {
+		   (function(){var t,e=this,a="[data-tab]",n=document.body,r=n.matchesSelector||n.webkitMatchesSelector||n.mozMatchesSelector||n.msMatchesSelector,o=function(){var a=e.querySelectorAll("[data-tab-content]")||[];for(t=0;t<a.length;t++)a[t].style.display="none"},i=function(n){var r=e.querySelectorAll(a)||[];for(t=0;t<r.length;t++){var i=r[t],s=i.className.replace("tab-active","").trim();i.className=s}o(),n.className+=" tab-active";var l=n.getAttribute("href"),c=e.querySelector(l);c&&(c.style.display="")},s=e.querySelector(".tab-active"+a);s=s||e.querySelector(a),s&&i(s),e.addEventListener("click",function(t){var e=t.target;r.call(e,a)&&i(e)})}.bind(items[i]))();
+		 }
+	  </script>
 	</body>
 <html>

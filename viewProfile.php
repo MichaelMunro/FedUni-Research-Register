@@ -36,6 +36,8 @@ require_once "PHP/default.php";
 					</a>
 					<a href="account.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Account
 					</a>
+			<a href="file.php" data-highlightable="1" title="File" class="navbar-menu-link gjs-comp-selected">Files					</a>
+ 
                    <?php
                    if (is_logged_in())
                    {

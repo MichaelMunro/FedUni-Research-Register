@@ -13,18 +13,16 @@
     
     
     $stmt;
-        $query="SELECT DISTINCT skill_type FROM Skills;";
-        $stmt= mysqli_prepare($conn,$query);
-     
-    
 
+    //Gets all the categories
+    $query="SELECT DISTINCT skill_type FROM Skills;";
+    $stmt= mysqli_prepare($conn,$query);
     $success = mysqli_stmt_execute($stmt);
     $results = mysqli_stmt_get_result($stmt);
     
-    
+    //Store the results
     while($row = mysqli_fetch_assoc($results))
-    {
-        
+    { 
         $json_result[]=$row;
     }
 

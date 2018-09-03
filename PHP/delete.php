@@ -7,6 +7,8 @@ require_once "default.php";
     
 
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
+
+    //Following queries delete all the users information
     $query = "DELETE FROM User_Skills WHERE user_id = ?;";
     $stmt= mysqli_prepare($conn,$query);
     mysqli_stmt_bind_param($stmt,"d",$id);

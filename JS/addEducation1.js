@@ -1,11 +1,13 @@
             
-            
+var httEducation;            
 var num = 1;
 var start = 1
 var size;
 var list;
 var httd;
 loadUni();
+
+//Loads all the Universities using Ajax
 function loadUni()
 {
     httd = new XMLHttpRequest();
@@ -14,9 +16,9 @@ function loadUni()
     httd.send();
 }
 
+//Lists all of the University in a section
 function lists(ev)
 {
-
     list = JSON.parse(httd.responseText);
     size = list.length;
     var sel;
@@ -38,8 +40,10 @@ function lists(ev)
     }
 }
 
+//Adds the Qualification
 function addQual()
 {
+    //Gets all the data from the inputs
     var typeArr = document.getElementById("type0").value;
     var degArr= document.getElementById("degree0").value;
     var uniArr= document.getElementById("uni0").value;
@@ -47,20 +51,28 @@ function addQual()
     var studyArr=document.getElementById("study0").value;
 
                                 
-    var htts;
-    htts = new XMLHttpRequest();
-    htts.open("POST","PHP/addEducation.php",true);
+    //Sends the inputs to the backend to be added
+    httEducation = new XMLHttpRequest();
+    httEducation.open("POST","PHP/addEducation.php",true);
+    httEducation.onload=showEducation;
     var hID = {};
     hID.typeData= typeArr; 
     hID.degData=degArr;
     hID.uniData=uniArr;
     hID.dateData=dateArr;
     hID.studyData=studyArr;
-    reset();
-    htts.send(JSON.stringify(hID));               
+    resetEducation();
+    httEducation.send(JSON.stringify(hID));               
 }
 
-function reset()
+//Lets the user know if the Education was successfully added
+function showEducation(ev)
+{
+    alert(JSON.parse(httEducation.responseText));
+}
+
+//Resets all the fields
+function resetEducation()
 {
     document.getElementById("type0").getElementsByTagName('option')[0].selected='selected';
     document.getElementById("degree0").value="";

@@ -1,18 +1,20 @@
-    var htt;
-    var httCat;
-    var sizes;
-    var lists;
-    var sel = document.getElementById('category');
-    var skillForms = document.getElementById("form10");
+var htt;
+var httCat;
+var sizes;
+var lists;
+var sel = document.getElementById('category');
+var skillForms = document.getElementById("form10");
+var htts;
 
+//This ajax requests gets all the cattegories
+httCat = new XMLHttpRequest();
+httCat.open("POST","php/getCategory.php",true);
+httCat.onload=listCat;
+httCat.send();
 
-    httCat = new XMLHttpRequest();
-    httCat.open("POST","php/getCategory.php",true);
-    httCat.onload=listCat;
-    httCat.send();
-
-    function listCat(ev)
-    {
+//Lists all the categories
+function listCat(ev)
+{
     var selCat = document.getElementById("category");
     var catLists = JSON.parse(httCat.responseText);
     var catSize = catLists.length;
@@ -22,23 +24,23 @@
         var catText=catLists[i].skill_type;
         if(!(catText =="General" || catText == "Research"))
         {
-        var catOption = document.createElement("option");
-        catOption.setAttribute("value",catText);
-        catOption.innerHTML=catText;
-        selCat.appendChild(catOption);
+            var catOption = document.createElement("option");
+            catOption.setAttribute("value",catText);
+            catOption.innerHTML=catText;
+            selCat.appendChild(catOption);
         }                      
     }
     getList(catLists[2].skill_type);
-    }
+}
 
 
-
-    sel.addEventListener('change',function(ev)
-    {
-
+//Adds a listener to the select category option so that when the category changes it displays the correct skills
+sel.addEventListener('change',function(ev)
+{
     getList(sel.options[sel.selectedIndex].text);
-    },false)
+},false)
 
+//Resets the displayed skills so skills from categories can be displayed
 function clear()
 {
     for(var i = 0; i<sizes;i++)
@@ -52,6 +54,7 @@ function clear()
 
     }
 }
+//This Ajax request retrieves the skills for the specified category
 function getList(d)
 {
     clear();
@@ -62,11 +65,14 @@ function getList(d)
     htt.onload= listy;
     htt.send(JSON.stringify(temp));
 } 
-  //  var x = document.getElementById("form10");
+
+//Lists the skills
 function listy(ev)
 {
     lists = JSON.parse(htt.responseText);
     sizes = lists.length;
+
+    //Iterate through each skill, list the skill name and create 3 radio buttons(low med high) for each skill
     for(var i = 0;i<sizes;i++)
     {
         var skillNames = document.createTextNode(lists[i].skill_name);
@@ -101,6 +107,7 @@ function listy(ev)
         
         var highs =document.createTextNode("High");
 
+        //Appends each skill and associated radio buttons to form
         skillForms.appendChild(skillNames);
         skillForms.appendChild(skillHids);
         skillForms.appendChild(lowRads);
@@ -121,36 +128,47 @@ function listy(ev)
 
 }
 
-
+//This function adds the skills
 function addSpecificSkills()
 {
     var counts = 0;
     var checkArrays= [];
     var skillArrays=[];
 
+    //Iterate through each skill
     while(counts<sizes)
     {
         
         var tRad = document.getElementsByName("tRadios"+counts);
+        //Iterate through each radio button for each skill to see which one is checked
         for(var i = 0; i<tRad.length;i++)
         {   
+            //Checks each radio button
             if(tRad[i].checked)
             {
+                //adds the  skill data and resets the radio
                 checkArrays[counts] = document.getElementById("hids"+counts).value;
                 skillArrays[counts]= tRad[i].value;
+                tRad[i].checked=false;
             }
         }
         counts++;
 
     }
 
-    var htts;
+    //Ajax request that  sends skill data to backend for processing
     htts = new XMLHttpRequest();
     htts.open("POST","PHP/sign.php",true);
+    htts.onload = result;
     var hIDs = {};
     hIDs.checkData= checkArrays; 
     hIDs.skillData=skillArrays;
     hIDs.lengths =checkArrays.length;
     htts.send(JSON.stringify(hIDs));
 
+}
+//Lets the user know of outcome
+function result(ev)
+{
+    alert(JSON.parse(htts.responseText));
 }

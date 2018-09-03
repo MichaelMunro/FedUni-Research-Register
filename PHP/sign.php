@@ -13,9 +13,15 @@ session_start();
     $userid = logged_in_user();
   // $userid = 1;
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
+
+    //Inserts each skill to the user
     $query= "INSERT INTO user_skills(user_id,skill_id,skill_level) VALUES(?,?,?);";
     $x = $req_obj->lengths;
     $i=0;
+    $count=0;
+    $text="";
+
+    //Iterates though each skill
     while($i<$x)
     {
         $stmt = mysqli_prepare($conn, $query);
@@ -23,10 +29,16 @@ session_start();
         $success = mysqli_stmt_execute($stmt);
         $results = mysqli_stmt_get_result($stmt);
         $i++;
+        if($success)
+        {
+            $count++;
+        }
     }
+
+    $text = $count . " out of ". $x . " skills successfully added";
 
         //Inform the client that we are sending back JSON    
     header("Content-Type: application/json");
     //Encodes and sends it back
-    echo json_encode($req_obj);
+    echo json_encode($text);
 ?>

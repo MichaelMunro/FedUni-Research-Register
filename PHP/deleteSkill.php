@@ -10,11 +10,14 @@ require_once "default.php";
     $req_obj = json_decode($req);
     $id =$req_obj->id;
     $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
+
+    //Removes all the users from this skill
     $query = "DELETE FROM User_Skills WHERE skill_id = ?;";
     $stmt= mysqli_prepare($conn,$query);
     mysqli_stmt_bind_param($stmt,"d",$id);
     $success = mysqli_stmt_execute($stmt);
 
+    //Deletes the skill
     $query = "DELETE FROM Skills WHERE skill_id = ?;";
     $stmt= mysqli_prepare($conn,$query);
     mysqli_stmt_bind_param($stmt,"d",$id);

@@ -1,10 +1,14 @@
 var httCats;
 var httSkills;
 var skillSize;
-var catSizes 
+var skillHtts;
+var catSizes;
+var catHtts;
 var selCats = document.getElementById("skillCat0");
 loadCategories();
 
+
+//Loads all the categories
 function loadCategories()
 {
     httCats = new XMLHttpRequest();
@@ -13,11 +17,13 @@ function loadCategories()
     httCats.send();
 }
 
+//Adds a listener to the select category option so that when the category changes it displays the correct skills
 selCats.addEventListener('change',function(ev)
 {
     showSkills(selCats.options[selCats.selectedIndex].text);
 },false);
 
+//Lists all the categories and adds a delete button to each
 function listCats(ev)
 {
     var selCates= document.getElementById("addCat0");
@@ -46,39 +52,83 @@ function listCats(ev)
     
 }
 
+//Sends the skill inputs to the backend to be added
 function addSkill()
 {
     var catToAdd= document.getElementById("skillCat0").value;
     var nameToAdd= document.getElementById("skillName0").value;
-
-    var skillHtts = new XMLHttpRequest();
-    skillHtts.open("POST","PHP/addNewSkill.php",true);
-    var skillToAdd={};
-    skillToAdd.cat=catToAdd;
-    skillToAdd.name = nameToAdd;
-    skillHtts.onload=reset;
-    skillHtts.send(JSON.stringify(skillToAdd));
+    if(catToAdd !="")
+    {
+        if(nameToAdd!="")
+        {
+           console.log("The name is ." + nameToAdd+".");
+            skillHtts = new XMLHttpRequest();
+            skillHtts.open("POST","PHP/addNewSkill.php",true);
+            var skillToAdd={};
+            skillToAdd.cat=catToAdd;
+            skillToAdd.name = nameToAdd;
+            skillHtts.onload=reset;
+            skillHtts.send(JSON.stringify(skillToAdd));
+        }
+        else
+        {
+           alert("Please Enter a Skill");
+        }
+    }
+    else
+    {
+       alert("Please select a Category");
+   }
     
 }
-
+//Resets the fields and lets the user know if successful or not
 function reset(ev)
 {
+    alert(JSON.parse(skillHtts.responseText));
+    document.getElementById("skillName0").value = "";
     showSkills(document.getElementById("skillCat0").value);
 }
 
+//Sends the  category data to the backend to be added
 function addCategory()
 {
     var newCat= document.getElementById("catName0").value;
     var newSkill= document.getElementById("skillName1").value;
 
-    var catHtts = new XMLHttpRequest();
-    catHtts.open("POST","PHP/addNewSkill.php",true);
-    var catToAdd={};
-    catToAdd.cat=newCat;
-    catToAdd.name = newSkill;
-    catHtts.send(JSON.stringify(catToAdd));
+    if (newCat !="")
+    {
+        if(newSkill!="")
+        {
+            catHtts = new XMLHttpRequest();
+            catHtts.open("POST","PHP/addNewCategory.php",true);
+            var catToAdd={};
+            catToAdd.cat=newCat;
+            catToAdd.name = newSkill;
+            catHtts.onload=clears;
+            catHtts.send(JSON.stringify(catToAdd));
+        }
+        else
+        {
+            alert("Please Enter a Skill");
+        }
+    }
+    else
+    {
+        alert("Please enter a Category");
+    }
 }
 
+//Resets the fields and lets the user know if successful or not
+function clears(ev)
+{
+    alert(JSON.parse(catHtts.responseText));
+    document.getElementById("catName0").value="";
+    document.getElementById("skillName1").value="";
+    
+
+}
+
+//Retrieves all the skills for the selected category
 function showSkills(cats)
 {
     httSkills = new XMLHttpRequest();
@@ -88,6 +138,8 @@ function showSkills(cats)
     httSkills.onload=listSkills;
     httSkills.send(JSON.stringify(cates));
 }
+
+//Lists the skills
 
 function listSkills(ev)
 {
@@ -112,7 +164,7 @@ function listSkills(ev)
 
         }
 }
-
+//Clears the skills so skills from other categories can be shown
 function clear()
 {
     for(var i = 0; i<skillSize;i++)
@@ -127,6 +179,7 @@ function clear()
     }
 }
 
+//Deletes the skills
 function deleteSkill(id)
 {
    
@@ -138,6 +191,7 @@ function deleteSkill(id)
     showSkills(document.getElementById("skillCat0").value);
 }
 
+//Deletes the Category
 function deleteCat(id)
 {
     var delCatHtt = new XMLHttpRequest();
@@ -149,6 +203,8 @@ function deleteCat(id)
     loadCategories();
 }
 
+
+//Clears the categories
 function clearCategories()
 {
     for(var i = 0; i<catSizes;i++)

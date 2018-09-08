@@ -106,10 +106,14 @@
   <input type = "radio" name ="workUni"  value="0"  /> No</p>
             
 
-   Do you have Bachelor's degree?</p>
-  
-     <input type = "radio" name ="bachelor"  id="yes" onClick="degree_alert()" /> Yes
-	  <input type = "radio" name ="bachelor" id="no" onClick="degree_alert1()" /> No
+  <input type = "radio" name ="bachelor"  id="yes" onClick="document.getElementById('sub').disabled
+
+=false;
+
+" /> Yes
+	  <input type = "radio" name ="bachelor" id="no" onClick="document.getElementById('sub').disabled=true;
+alert('you need a bachelor degree to proceed the registration');" /> No
+ 
   
      
        

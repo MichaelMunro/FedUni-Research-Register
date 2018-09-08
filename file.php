@@ -65,14 +65,18 @@ require_once "PHP/default.php";
 <input type="submit" value="upload" name="submit">
 </form>		<?php    
 							
-$query = "SELECT Files.file_name,Files.file_location FROM Files INNER JOIN User_Files ON Files.file_id=User_Files.file_id WHERE User_Files.user_id = $user_id;";
+$query = "SELECT Files.file_name,Files.file_location FROM Files INNER JOIN User_Files ON Files.file_id=User_Files.file_id WHERE User_Files.user_id = ?;";
 		
-$result=$conn->query($query);
+$stmt= mysqli_prepare($conn,$query);
+								mysqli_stmt_bind_param($stmt,"d",$user_id);
+
+								$success = mysqli_stmt_execute($stmt);
+								$results = mysqli_stmt_get_result($stmt);
 				                                   
 							
 echo "<h1>Files</h1>";
 		
-while($row1 = $result->fetch_assoc())
+while($row1 = mysqli_fetch_assoc($results))
 	
 {
 	$fname=$row1['file_name'];

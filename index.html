@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<!-- need to add - logout functionality to menu -->
+<!-- need to add - graduate confirmation to register form -->
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <title>Research Assistant Database
+    </title>
+    <div data-gjs="navbar" class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand"></a>
+            <div id="i1pfjb" class="navbar-burger">
+                <div class="navbar-burger-line">
+                </div>
+                <div class="navbar-burger-line">
+                </div>
+                <div class="navbar-burger-line">
+                </div>
+            </div>
+            <div data-gjs="navbar-items" class="navbar-items-c">
+                <nav data-gjs="navbar-menu" class="navbar-menu">
+					<a href="home.php" class="navbar-menu-link">Home
+					</a>
+					<a href="help.php" class="navbar-menu-link">Help
+					</a>
+					<a href="profile.php" data-highlightable="1" title="Profile" class="navbar-menu-link gjs-comp-selected">Profile
+					</a>
+					<a href="account.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Account
+					</a>
+					<!-- add log out functionality to below -->
+					<!--<a href="PHP/logout.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Log Out-->
+					</a>
+				</nav>
+            </div>
+        </div>
+    </div>
+    <div id="ii4vcy" class="row c3690">
+        <div id="iuxvnm" class="cell">
+            <div class="c13731">Research Assistant Database</div>
+            <div data-tabs="1" id="iitw8i">
+                <nav data-tab-container="1" class="tab-container">
+					<a href="#login-tab" data-tab="1" class="tab">Login
+					</a>
+					<a href="#register-tab" data-tab="1" class="tab">Register
+					</a>
+				</nav>
+                <div id="login-tab" data-tab-content="1" class="tab-content">
+                    <div id="tab-title" class="c15657"></div>
+                    <div id="tab-row" class="row">
+                        <div id="form-cell" class="cell">
+                            <form class="form" action = "PHP/login.php" method = "POST">
+                                <div class="form-group">
+                                    <input name = "tUsername"placeholder="Email Address" required type="email" class="input" />
+                                    <input name = "tPassword" placeholder="Password" required type="password" class="input" />
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="button">Login</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="bootstable-row" class="row">
+                        <div id="bootstable-cell" class="cell c12511">
+                        </div>
+                    </div>
+                </div>
+                <div id="register-tab" data-tab-content="1" class="tab-content">
+                    <div id="tab-title" class="c15657"></div>
+                    <div id="tab-row" class="row">
+                        <div id="form-cell" class="cell">
+                            <form class="form" action = "PHP/register.php" method="POST" />
+                                <div class="form-group"></div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <select name = "tTitle" required class="select">
+                                    <option value="">- Title -</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Dr">Dr</option>
+                                </select>
+                                <input name = "tFirstName"placeholder="First Name" required class="input" />
+                                <input name = "tLastName" placeholder="Last Name" required class="input" />
+                                <input name = "tEmail" type="email" placeholder="Email Address" required class="input" />
+                                <input name ="tPassword"placeholder="Password" type="password" required class="input" />
+                                <input name = "tConfirm" placeholder="Confirm Password" type="password" required class="input" />
+       
+                         Have you worked with the Uni before?</p>
+                                
+
+ <input type = "radio" name ="workUni"  value="1"  /> Yes
+          
+  <input type = "radio" name ="workUni"  value="0"  /> No</p>
+            
+
+   Do you have Bachelor's degree?</p>
+  
+     <input type = "radio" name ="bachelor"  id="yes" onClick="degree_alert()" /> Yes
+	  <input type = "radio" name ="bachelor" id="no" onClick="degree_alert1()" /> No
+  
+     
+       
+ <div class="form-group">
+
+   <button type="submit" class="button" id="sub"  disabled>Register</button>
+ 
+              
+      </div>
+ 
+  <script src="JS/alerts.js"></script>
+	                       
+    </form>
+                        
+</div>
+
+    </div>
+                    <div id="bootstable-row" class="row">
+                        <div id="bootstable-cell" class="cell c12511">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c14791">Footer
+            </div>
+        </div>
+    </div>
+    <script>
+        var items = document.querySelectorAll('#iitw8i');
+        for (var i = 0, len = items.length; i < len; i++) {
+            (function() {
+                var t, e = this,
+                    a = "[data-tab]",
+                    n = document.body,
+                    r = n.matchesSelector || n.webkitMatchesSelector || n.mozMatchesSelector || n.msMatchesSelector,
+                    o = function() {
+                        var a = e.querySelectorAll("[data-tab-content]") || [];
+                        for (t = 0; t < a.length; t++) a[t].style.display = "none"
+                    },
+                    i = function(n) {
+                        var r = e.querySelectorAll(a) || [];
+                        for (t = 0; t < r.length; t++) {
+                            var i = r[t],
+                                s = i.className.replace("tab-active", "").trim();
+                            i.className = s
+                        }
+                        o(), n.className += " tab-active";
+                        var l = n.getAttribute("href"),
+                            c = e.querySelector(l);
+                        c && (c.style.display = "")
+                    },
+                    s = e.querySelector(".tab-active" + a);
+                s = s || e.querySelector(a), s && i(s), e.addEventListener("click", function(t) {
+                    var e = t.target;
+                    r.call(e, a) && i(e)
+                })
+            }.bind(items[i]))();
+        }
+    </script><script src="JS/alert.js" ></script>  
+</body>
+<html>

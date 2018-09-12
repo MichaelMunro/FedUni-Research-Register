@@ -36,7 +36,6 @@ require_once "PHP/default.php";
 					</a>
 					<a href="account.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Account
 					</a>
-			
                    <?php
                    if (is_logged_in())
                    {
@@ -61,7 +60,7 @@ require_once "PHP/default.php";
                 
                 $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
 
-       $query = "SELECT * FROM Users WHERE user_id=?;";
+         $query = "SELECT * FROM Users WHERE user_id=?;";
         $stmt= mysqli_prepare($conn,$query);
         mysqli_stmt_bind_param($stmt,"d",$user_id);
 
@@ -73,7 +72,34 @@ require_once "PHP/default.php";
 
         echo "Full Name: ". $row['title']." ". $row['first_name']." ". $row['middle_name']." ". $row['last_name'];
         echo "</p>";
-        echo "Email: ". $row['email'];
+        echo "Email: ". $row['email']."</p>";
+        if (getPermission()==2)
+        {
+            ?>
+            <form>
+                <select id = "perm0" required="" name="Permission" class="select">
+                <option value="0" <?php if($row['permission']==0){echo 'selected="selected"';} ?>>Research Assistant</option>
+                <option value="1"<?php if($row['permission']==1){echo 'selected="selected"';} ?>>Researcher(Admin)</option>
+                <option value="2"<?php if($row['permission']==2){echo 'selected="selected"';} ?>>Super Admin</option>
+                </selecT>
+                <input type = "hidden" id = "hiddenPerm" value = <?php echo $row['user_id'];?>/>
+                <input type = "button" onClick="updatePerm()" value = "Update Permission"/>
+            </form>
+            <script src="JS/updates.js"></script>
+            <?php
+            if($row['permission']==0)
+            {
+                echo  "Current Access Level is:  Research Assistant";
+            }
+            if($row['permission']==1)
+            {
+                echo  "Current Access Level is:  Researcher(Admin)";
+            }
+            if($row['permission']==2)
+            {
+                echo  "Current Access Level is:  Super Admin";
+            }
+        }
 
         $query = "SELECT qualification.qualification_id,qualification.qualification_name,qualification.qualification_type,qualification.end_date, qualification.finished  FROM Qualification INNER JOIN Study ON qualification.qualification_id=Study.qualification_id WHERE Study.user_id = ? ;";
         $stmt= mysqli_prepare($conn,$query);

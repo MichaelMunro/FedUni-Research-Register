@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -97,15 +97,10 @@
                                 <input name = "tEmail" type="email" placeholder="Email Address" required class="input" />
                                 <input name ="tPassword"placeholder="Password" type="password" required class="input" />
                                 <input name = "tConfirm" placeholder="Confirm Password" type="password" required class="input" />
-       
-                         Have you worked with the Universty before?</p>
-                                
-
- <input type = "radio" name ="workUni"  value="1"  /> Yes
-          
-  <input type = "radio" name ="workUni"  value="0"  /> No</p>
-
-Do you have a bachelor's degree ? </p>
+                                Have you worked with the Uni before?</p>
+                                 <input type = "radio" name ="workUni" value="1"/> Yes
+                               <input type = "radio" name ="workUni" value="0"/> No
+							</p>Do you have a bachelor's degree ? </p>
             
 
   <input type = "radio" name ="bachelor"  id="yes" onClick="document.getElementById('sub').disabled
@@ -115,24 +110,14 @@ Do you have a bachelor's degree ? </p>
 " /> Yes
 	  <input type = "radio" name ="bachelor" id="no" onClick="document.getElementById('sub').disabled=true;
 alert('you need a minimum of bachelor degree to proceed the registration');" /> No
+    
+                                <div class="form-group">
+                                    <button type="submit" class="button" id="sub"  disabled>Register</button>
  
-  
-     
-       
- <div class="form-group">
-
-   <button type="submit" class="button" id="sub"  disabled>Register</button>
- 
-              
-      </div>
- 
-  <script src="JS/alerts.js"></script>
-	                       
-    </form>
-                        
-</div>
-
-    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div id="bootstable-row" class="row">
                         <div id="bootstable-cell" class="cell c12511">
                         </div>
@@ -174,6 +159,6 @@ alert('you need a minimum of bachelor degree to proceed the registration');" /> 
                 })
             }.bind(items[i]))();
         }
-    </script><script src="JS/alert.js" ></script>  
+    </script>
 </body>
 <html>

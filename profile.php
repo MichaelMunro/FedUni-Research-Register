@@ -86,7 +86,8 @@ $conn = mysqli_connect($DB_HOST,$DB_USER,$DB_PASSWORD,$DB_NAME);
            <div data-tabs="1" id="iitw8i">
      
           <nav data-tab-container="1" class="tab-container">
-					
+<a href="#preferences-tab" data-tab="1" class="tab">Preferences
+					</a>					
 <a href="#education-tab" data-tab="1" class="tab">Education
 </a>
 	

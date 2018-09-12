@@ -5,7 +5,7 @@ require_once "PHP/default.php";
 ?>
 <head>
 	<meta charset="utf-8">
-		<link rel="stylesheet" href="./css/style2.css">
+		<link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
 	     <?php
@@ -35,8 +35,6 @@ $user_id = logged_in_user();
 					</a>
 					<a href="account.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Account
 					</a>
-					
- 
                    <?php
                    if (is_logged_in())
                    {
@@ -57,38 +55,33 @@ $user_id = logged_in_user();
 			</div>
 			<div data-tabs="1" id="iitw8i">
 				<nav data-tab-container="1" class="tab-container">
-					<!--<a href="#password-tab" data-tab="1" class="tab">Password
-					</a>-->
+					<a href="#password-tab" data-tab="1" class="tab">Password
+					</a>
 					<a href="#removal-tab" data-tab="1" class="tab">Removal
 					</a>
 				</nav>
-				<!--<div id="password-tab" data-tab-content="1" class="tab-content">
+				<div id="password-tab" data-tab-content="1" class="tab-content">
 					<div id="tab-title" class="c15657">
 					</div>
 					<div id="tab-row" class="row">
 						<div id="form-cell" class="cell">
-							<form class="form">
+							<form class="form" action = "PHP/updatePass.php" method="POST">
 								<div class="form-group">
-									<input placeholder="Current Password" required type="password" class="input"/>
-									<input placeholder="New Password" required type="password" class="input"/>
-								</div>
-								<div class="form-group">
-								</div>
-								<div class="form-group">
-								</div>
-								<input placeholder="Confirm New Password" type="password" required class="input"/>
-								<div class="form-group">
-									<button type="submit" class="button">Submit
-									</button>
+									<input type = "hidden" id="passUser" name = "tUser"value = <?php echo $user_id;?>/>
+									<input placeholder="Current Password" required type="password"class="input"/>
+									<input placeholder="New Password" required type="password" name = "tPassword" id= "currPass" class="input"/>
+									<input placeholder="Confirm New Password" type="password" required class="input"/>
+									<input type="submit" class="button" value="Submit new Password"/>
 									</div>
 							</form>
+							<script src="JS/updates.js"></script>
 						</div>
 					</div>
 					<div id="bootstable-row" class="row">
 						<div id="bootstable-cell" class="cell c12511">
 						</div>
 					</div>
-				</div>-->
+				</div>
 				<div id="removal-tab" data-tab-content="1" class="tab-content">
 					<div id="tab-title" class="c15657">
 					</div>

@@ -2,7 +2,8 @@ var httad;
 var sizesa;
 var listsa;
 var htts;
-
+var httCheck;
+var checkLists;
 //This Ajax request retrieves all the General and Research skills from the Database
 httad = new XMLHttpRequest();
 httad.open("POST","PHP/getSkills.php",true);
@@ -36,7 +37,7 @@ function listsSkill(ev)
         
         
         var medRad = document.createElement("input");
-        medRad.setAttribute("id","low"+i);
+        medRad.setAttribute("id","med"+i);
         medRad.setAttribute("type","radio");
         medRad.setAttribute("class","radio");
         medRad.setAttribute("name","tRadio"+i);
@@ -45,7 +46,7 @@ function listsSkill(ev)
         var med =document.createTextNode("Medium");
 
         var highRad = document.createElement("input");
-        highRad.setAttribute("id","low"+i);
+        highRad.setAttribute("id","high"+i);
         highRad.setAttribute("type","radio");
         highRad.setAttribute("class","radio");
         highRad.setAttribute("name","tRadio"+i);
@@ -63,9 +64,68 @@ function listsSkill(ev)
         skillForm.appendChild(highRad);
         skillForm.appendChild(high);
         skillForm.appendChild(document.createElement("P"));
+
+        
     }
+    check();
 }
 
+function check()
+{
+    httCheck = new XMLHttpRequest();
+    httCheck.open("POST","PHP/getUserSkills.php",true);
+    httCheck.onload= checkSkill;
+    httCheck.send(); 
+}
+
+function checkSkill(ev)
+{
+    checkLists = JSON.parse(httCheck.responseText);
+
+    var checkSize = checkLists.length;
+
+    var counts = 0;
+    
+
+    while(counts<sizea)
+    {
+        
+       
+        var hidValue =document.getElementById("hid"+counts).value;
+
+        for(y =0;y<checkSize;y++)
+            {
+                 var x=checkLists[y].skill_id;
+                if(x==hidValue)   
+                {        
+                    if(checkLists[y].skill_level=="Low")
+                    {
+                        var tRadios = document.getElementById("low"+counts);
+                        tRadios.checked=true;
+                        break;
+
+                    }
+                    if(checkLists[y].skill_level=="Medium")
+                    {
+                        var tRadios = document.getElementById("med"+counts);
+                        tRadios.checked=true;
+                        break;
+                    }
+                    if(checkLists[y].skill_level=="High")
+                    {
+                        var tRadios = document.getElementById("high"+counts);
+                        tRadios.checked=true;
+                        break;
+                    }
+                
+                
+                
+                }
+            }
+        
+        counts++;
+    }
+}
 
 //Sends the skill and the  skill level to the database to be added
 function addGeneralSkill()
@@ -87,7 +147,7 @@ function addGeneralSkill()
                 //adds the  skill data and resets the radio
                 array[count] = document.getElementById("hid"+count).value;
                 arr[count]= tRads[i].value;
-                tRads[i].checked=false;
+                
             }
 
         }
@@ -112,6 +172,7 @@ function addGeneralSkill()
 function results(ev)
 {
     alert(JSON.parse(htts.responseText));
+    check();
 }
 
 

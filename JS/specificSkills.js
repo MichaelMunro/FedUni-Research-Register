@@ -5,6 +5,9 @@ var lists;
 var sel = document.getElementById('category');
 var skillForms = document.getElementById("form10");
 var htts;
+var httChecks;
+var checkListss;
+var choice;
 
 //This ajax requests gets all the cattegories
 httCat = new XMLHttpRequest();
@@ -61,6 +64,7 @@ function getList(d)
     htt = new XMLHttpRequest();
     var temp = {};
     temp.category = d;
+    choice = d;
     htt.open("POST","PHP/getSpecific.php",true);
     htt.onload= listy;
     htt.send(JSON.stringify(temp));
@@ -92,7 +96,7 @@ function listy(ev)
         
         
         var medRads = document.createElement("input");
-        medRads.setAttribute("id","lows"+i);
+        medRads.setAttribute("id","meds"+i);
         medRads.setAttribute("type","radio");
         medRads.setAttribute("name","tRadios"+i);
         medRads.setAttribute("value","Medium");
@@ -100,7 +104,7 @@ function listy(ev)
         var meds =document.createTextNode("Medium");
 
         var highRads = document.createElement("input");
-        highRads.setAttribute("id","lows"+i);
+        highRads.setAttribute("id","highs"+i);
         highRads.setAttribute("type","radio");
         highRads.setAttribute("name","tRadios"+i);
         highRads.setAttribute("value","High");
@@ -125,6 +129,7 @@ function listy(ev)
     specBut.setAttribute("onClick","addSpecificSkills()");
     specBut.setAttribute('value',"Add");
     skillForms.appendChild(specBut);
+    checks(choice);
 
 }
 
@@ -149,7 +154,7 @@ function addSpecificSkills()
                 //adds the  skill data and resets the radio
                 checkArrays[counts] = document.getElementById("hids"+counts).value;
                 skillArrays[counts]= tRad[i].value;
-                tRad[i].checked=false;
+                
             }
         }
         counts++;
@@ -171,4 +176,59 @@ function addSpecificSkills()
 function result(ev)
 {
     alert(JSON.parse(htts.responseText));
+}
+function checks(hi)
+{
+    httChecks = new XMLHttpRequest();
+    httChecks.open("POST","PHP/getUserSpecificSkills.php",true);
+    var tempor = {};
+    tempor.category = hi;
+    httChecks.onload= checkSkills;
+    httChecks.send(JSON.stringify(tempor)); 
+}
+
+function checkSkills(ev)
+{
+    checkListss = JSON.parse(httChecks.responseText);
+
+    var checkSizes = checkListss.length;
+
+    var countss = 0;
+
+
+    while(countss<sizes)
+    {
+        var hidValues =document.getElementById("hids"+countss).value;
+        for(s =0;s<checkSizes;s++)
+            {
+                
+                 var a=checkListss[s].skill_id;
+                
+                if(a==hidValues)   
+                {        
+                    if(checkListss[s].skill_level=="Low")
+                    {
+                        var tRadio = document.getElementById("lows"+countss);
+                        tRadio.checked=true;
+                        break;
+
+                    }
+                    if(checkListss[s].skill_level=="Medium")
+                    {
+                        var tRadio = document.getElementById("meds"+countss);
+                        tRadio.checked=true;
+                        break;
+                    }
+                    if(checkListss[s].skill_level=="High")
+                    {
+                        var tRadio = document.getElementById("highs"+countss);
+                        tRadio.checked=true;
+                        break;
+                    }     
+                
+                }
+            }
+        
+        countss++;
+    }
 }

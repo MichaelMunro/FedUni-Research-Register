@@ -66,27 +66,24 @@ return false;
 
             }
         },false);
- 
-
-
-         
-function degree_alert()
- 
+          
+function degree_alert() 
 {
-   
-   
- 
-document.getElementById('sub').disabled
+    var rad = document.getElementById("YesDegree");
+    
+    if (document.getElementById("YesDegree").checked)
+    {
+    
+              var from = document.getElementById("forms");
+                from.submit();
+    }
+    if (document.getElementById("NoDegree").checked)
+    {
+    
+        alert("You need a bachelor degree to continue");
 
-=false;
+    }
 
-}
+    
 
-
-function degree_alert1()
-{
-document.getElementById('sub').disabled
-
-=true;
-alert('you need a bachelor degree to proceed the registration');
 }

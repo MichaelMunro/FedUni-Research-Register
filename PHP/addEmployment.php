@@ -8,7 +8,7 @@ session_start();
     //Converts the contents into a PHP Object
     $req_obj = json_decode($req);
 
-//Grabs the data from the AJAX
+    //Grabs the data from the AJAX
     $typeID = $req_obj->typeData;
     $titleID = $req_obj->titleData;
     $manID = $req_obj->manData;

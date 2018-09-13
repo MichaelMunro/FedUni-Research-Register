@@ -345,7 +345,7 @@ $results = mysqli_stmt_get_result($stmt);
 				                                   
 							
 	echo "<h1>Files</h1>";
-echo "<table cellspacing='10'><center>";
+echo "<table cellspacing='50'><center>";
 		
 while($row1 = mysqli_fetch_assoc($results))
 	

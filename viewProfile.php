@@ -190,7 +190,7 @@ while($row1 = mysqli_fetch_assoc($results))
 {
 	$fname=$row1['file_name'];
 $path=	$row1['file_location'];				
-echo "<tr><td>".$row1['file_name']."</td><td>"."<button><a download='$fname' href='$path'>download</a></button></td></tr>";
+echo "<tr><td>".$row1['file_name']."</td><td>"."<button><a download='$fname' href='$path'  style='text-decoration:none;'>download</a></button></td></tr>";
 	
 }
 echo "</center></table>";

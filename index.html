@@ -1,19 +1,34 @@
 <!doctype html>
 <html lang="en">
-
+<?php
+session_start();
+require_once "PHP/default.php";
+?>
 <!-- need to add - logout functionality to menu -->
 <!-- need to add - graduate confirmation to register form -->
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/master.css">
+    <link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/class numbered.css">
+	<link rel="stylesheet" href="./css/media.css">
+	
 </head>
 
 <body>
-    <title>Research Assistant Database
-    </title>
+    <title>Research Assistant Database</title>
+    
+	
+		
     <div data-gjs="navbar" class="navbar">
-        <div class="navbar-container">
+        <a href="index.html">
+			<img src="img/logo_r.png" class="logo">
+		</a>
+		
+		<div class="navbar-container">
+		
+		
             <a href="/" class="navbar-brand"></a>
             <div id="i1pfjb" class="navbar-burger">
                 <div class="navbar-burger-line">
@@ -25,6 +40,9 @@
             </div>
             <div data-gjs="navbar-items" class="navbar-items-c">
                 <nav data-gjs="navbar-menu" class="navbar-menu">
+				
+					
+				
 					<a href="home.php" class="navbar-menu-link">Home
 					</a>
 					<a href="help.php" class="navbar-menu-link">Help
@@ -34,7 +52,7 @@
 					<a href="account.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Account
 					</a>
 					<!-- add log out functionality to below -->
-					<!--<a href="PHP/logout.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Log Out-->
+					<a href="PHP/logout.php" data-highlightable="1" title="Account" class="navbar-menu-link gjs-comp-selected">Log Out
 					</a>
 				</nav>
             </div>
@@ -43,6 +61,7 @@
     <div id="ii4vcy" class="row c3690">
         <div id="iuxvnm" class="cell">
             <div class="c13731">Research Assistant Database</div>
+			
             <div data-tabs="1" id="iitw8i">
                 <nav data-tab-container="1" class="tab-container">
 					<a href="#login-tab" data-tab="1" class="tab">Login
@@ -50,40 +69,45 @@
 					<a href="#register-tab" data-tab="1" class="tab">Register
 					</a>
 				</nav>
+				
                 <div id="login-tab" data-tab-content="1" class="tab-content">
                     <div id="tab-title" class="c15657"></div>
+					
                     <div id="tab-row" class="row">
                         <div id="form-cell" class="cell">
-                            <form class="form" action = "PHP/login.php" method = "POST">
+                            <form class="form" id="login" action = "PHP/login.php" method = "POST">
                                 <div class="form-group">
-                                    <input name = "tUsername"placeholder="Email Address" required type="email" class="input" />
-                                    <input name = "tPassword" placeholder="Password" required type="password" class="input" />
+                                    <input name = "tUsername"placeholder="Email Address"  type="email" class="input" required />
+                                    <input name = "tPassword" placeholder="Password"  type="password" class="input" required />
                                 </div>
-                                <div class="form-group">
-                                </div>
-                                <div class="form-group">
-                                </div>
+								
+                                <div class="form-group"></div>
+                                
+                                <div class="form-group"></div>
+                                
                                 <div class="form-group">
                                     <button type="submit" class="button">Login</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+					
                     <div id="bootstable-row" class="row">
-                        <div id="bootstable-cell" class="cell c12511">
-                        </div>
+                        <div id="bootstable-cell" class="cell c12511"></div>
                     </div>
                 </div>
                 <div id="register-tab" data-tab-content="1" class="tab-content">
                     <div id="tab-title" class="c15657"></div>
+					
                     <div id="tab-row" class="row">
                         <div id="form-cell" class="cell">
-                            <form class="form" action = "PHP/register.php" method="POST" />
+                            <form class="form" id="reg" action = "PHP/register.php" method="POST">
                                 <div class="form-group"></div>
-                                <div class="form-group">
-                                </div>
-                                <div class="form-group">
-                                </div>
+								
+                                <div class="form-group"></div>
+                                
+                                <div class="form-group"></div>
+                                
                                 <select name = "tTitle" required class="select">
                                     <option value="">- Title -</option>
                                     <option value="Mr">Mr</option>
@@ -92,28 +116,18 @@
                                     <option value="Miss">Miss</option>
                                     <option value="Dr">Dr</option>
                                 </select>
+								
                                 <input name = "tFirstName"placeholder="First Name" required class="input" />
                                 <input name = "tLastName" placeholder="Last Name" required class="input" />
                                 <input name = "tEmail" type="email" placeholder="Email Address" required class="input" />
                                 <input name ="tPassword"placeholder="Password" type="password" required class="input" />
                                 <input name = "tConfirm" placeholder="Confirm Password" type="password" required class="input" />
-                                Have you worked with the Uni before?</p>
-                                 <input type = "radio" name ="workUni" value="1"/> Yes
-                               <input type = "radio" name ="workUni" value="0"/> No
-							</p>Do you have a bachelor's degree ? </p>
-            
-
-  <input type = "radio" name ="bachelor"  id="yes" onClick="document.getElementById('sub').disabled
-
-=false;
-
-" /> Yes
-	  <input type = "radio" name ="bachelor" id="no" onClick="document.getElementById('sub').disabled=true;
-alert('you need a minimum of bachelor degree to proceed the registration');" /> No
-    
+                                Have you worked with the Uni before?
+                                <input type = "radio" name ="workUni" value="1"/> Yes
+								<input type = "radio" name ="workUni" value="0"/> No
+								
                                 <div class="form-group">
-                                    <button type="submit" class="button" id="sub"  disabled>Register</button>
- 
+                                    <button type="submit" class="button">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -124,11 +138,10 @@ alert('you need a minimum of bachelor degree to proceed the registration');" /> 
                     </div>
                 </div>
             </div>
-            <div class="c14791">Footer
-            </div>
         </div>
     </div>
     <script>
+	
         var items = document.querySelectorAll('#iitw8i');
         for (var i = 0, len = items.length; i < len; i++) {
             (function() {
@@ -160,5 +173,8 @@ alert('you need a minimum of bachelor degree to proceed the registration');" /> 
             }.bind(items[i]))();
         }
     </script>
+	<footer>
+		foot
+	</footer>
 </body>
 <html>

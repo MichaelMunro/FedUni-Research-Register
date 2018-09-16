@@ -1,12 +1,17 @@
-<!doctype html><html lang="en">
+<!doctype html>
+
+<html lang="en">
 	<?php
 session_start();
 require_once "PHP/default.php";
 ?>
-<head>
-	<meta charset="utf-8">
-		<link rel="stylesheet" href="css/style2.css">
-</head>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./css/master.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./css/class numbered.css">
+		<link rel="stylesheet" href="./css/media.css">
+	</head>
 <body>
 	     <?php
 $user_id = logged_in_user(); 
@@ -133,8 +138,6 @@ $user_id = logged_in_user();
 					</div>
 				</div>
 			</div>
-			<div class="c14791">Footer
-			</div>
 		</div>
 	</div>
 	<script>var items = document.querySelectorAll('#iitw8i');
@@ -142,5 +145,9 @@ $user_id = logged_in_user();
           (function(){var t,e=this,a="[data-tab]",n=document.body,r=n.matchesSelector||n.webkitMatchesSelector||n.mozMatchesSelector||n.msMatchesSelector,o=function(){var a=e.querySelectorAll("[data-tab-content]")||[];for(t=0;t<a.length;t++)a[t].style.display="none"},i=function(n){var r=e.querySelectorAll(a)||[];for(t=0;t<r.length;t++){var i=r[t],s=i.className.replace("tab-active","").trim();i.className=s}o(),n.className+=" tab-active";var l=n.getAttribute("href"),c=e.querySelector(l);c&&(c.style.display="")},s=e.querySelector(".tab-active"+a);s=s||e.querySelector(a),s&&i(s),e.addEventListener("click",function(t){var e=t.target;r.call(e,a)&&i(e)})}.bind(items[i]))();
         }
 	</script>
+	<!--
+	<footer>
+		foot
+	</footer> -->
 </body>
 <html>

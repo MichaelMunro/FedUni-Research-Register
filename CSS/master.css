@@ -1,0 +1,219 @@
+
+/* ******************************BASE****************************** */
+
+* {
+    box-sizing: border-box;
+}
+/* body { body styles. //mainly base format and background  */
+  /* margin: 0px; */
+  /* padding: 10px; */
+  /* font-family: Georgia, "Times New Roman", Times, serif; */
+  /* background: linear-gradient(to left, #e0eef9, #80c6ff); */
+/* } */
+#log-in-container {
+  position: absolute;
+  margin:0px;
+  width: 450px;
+  height: 180px;
+  border: 2px solid black;
+  z-index: 1;
+  padding: 10px;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  left: 33.5%;
+}
+/* .container#reg { /* registration form container */ /*
+    border-radius: 5px;
+	background: linear-gradient(#dbdbdb, #f7f7f7);
+    padding: 10px;
+	width: 750px;
+	height:100%;
+	display:block;
+	position:absolute;
+	overflow:visible;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+} */
+
+.navbar{
+	width:100%;
+	/* background: linear-gradient(to left, #e0eef9, #80c6ff);  */
+	/* background: linear-gradient(to left, #e0eef9, #1f8ce4); */
+	background: linear-gradient(to left, #7c88da, #00126d );
+	font-weight:bold;
+	
+}
+
+/* ******************************ELEMENTS****************************** */
+
+button, input[type=button], input[type=submit], input[type=reset]{ /*button styles*/
+  width: 100%;
+  height: 25px;
+  background: linear-gradient(#eeeeee, #80c6ff);
+  margin:10px 0 5px 0;
+  /* margin-bottom:10px; */
+  border-color:#068;
+  border-radius: 15px;
+  line-height:normal;
+}
+button:hover{
+	background-color:#000000;
+}
+.logo{
+	/* background-image: url("/img/logo.jpg"); */
+	/* background-color: #cccccc; */
+	/* padding-top:10px; */
+	padding: 5px;
+	margin-top:2px;
+	margin-left:20px;
+	float:left;
+	height:50px;
+	width:230px;
+	border:0;
+}
+#space{
+	padding: 10px;
+}
+
+
+/* ******************************LINKS****************************** */
+/* a:link { */
+	/* color: #cc0000; /*red*/ 
+/* } */
+/* a:visited { */
+	/* color: #339933; /*green*/ 
+/* } */
+a:hover {
+	color: #000000; /*black*/
+}
+a:active {
+	color: #99cc33; /*greenish*/
+}
+
+
+/* ******************************REQUIRED FIELDS****************************** */
+
+input {
+	padding:5px 0 5px 0;
+    margin-bottom:15px;
+	border-radius:4px;
+	box-sizing: border-box;
+	border: 1px inset black;
+	/* background-color: #000000; */
+}
+input:invalid {
+	border-style:solid;
+	border-color: #ff0000;
+	/* border-color: #555; */
+	background-color: #7e7c84;
+	/* background-color: #a76868; pinkish */
+	/* background: linear-gradient(#dbdbdb, #f7f7f7); */
+	/* border-color: #f42c2c; */	
+	  
+}
+/* form:invalid {
+  border 5px sqolid #f42c2c;
+} */
+input:valid {
+	background-color: #8383f9;
+	/* border:1px solid black; /* working */ */
+}
+/* form:valid {
+  border: 5px solid #ddffdd;
+} */
+input:required {
+  /* border-color: #800000; */
+	border-width: 1px;
+	/* background-color: #e0eef9; */
+	/* background-color: #7e7c84; */
+	color: #1d1d1d;
+}
+input:hover{
+	background-color: #e0eef9;
+}
+input:focus {
+    border: 2px solid #555;
+}
+select {
+	border-radius: 4px;
+}
+
+/* ******************************TABLES****************************** */
+
+.table {
+    display:table;
+    text-align:center;
+	/* position: absolute;  */
+	width: 450px;
+	/* height: 180px; */
+	/* z-index: 1; */
+	/* top: 50%; */
+	/* left: 50%; */
+	/* transform: translate(-50%, -50%); */
+	
+	align-self:center;
+	align-items:flex-start;
+	position: static;
+}
+.table th,.table td {
+	padding: 0.75rem;
+	vertical-align: top;
+	border-top: 1px solid #dee2e6;
+}
+.table thead th {
+	vertical-align: bottom;
+	border-bottom: 2px solid #dee2e6;
+}
+.table-responsive {
+	display: block;
+	width: 100%;
+	/* overflow-x: auto; */
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.cell {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+
+/* ******************************FORMS****************************** */
+
+.form{
+	display:block;
+	padding:15px;
+	border: 2px inset ;
+	border-radius:10px;
+	border-color: #068;
+}
+form#login { /* log-in form style */
+    display:block;
+    border:2px solid black;
+	border-color:#068;
+	border-radius: 10px;
+    width: 450px;
+	
+    padding:15px;
+	
+	background-color:#e4e5e5;
+	align-self:center;
+	align-items:flex-start;
+	position: static; 
+}
+form#reg { /* reg form style */
+	display:block;
+	
+	width:500px; 
+	padding:15px;
+	border: 2px solid black;
+	border-radius:10px;
+	border-color: #068;
+}
+
+
+
+
+/* ****************************** ****************************** */
+

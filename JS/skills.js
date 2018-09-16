@@ -33,7 +33,7 @@ function listsSkill(ev)
         lowRad.setAttribute("name","tRadio"+i);
         lowRad.setAttribute("value","Low");
         
-        var low =document.createTextNode("Low");
+      
         
         
         var medRad = document.createElement("input");
@@ -43,7 +43,7 @@ function listsSkill(ev)
         medRad.setAttribute("name","tRadio"+i);
         medRad.setAttribute("value","Medium");
         
-        var med =document.createTextNode("Medium");
+        
 
         var highRad = document.createElement("input");
         highRad.setAttribute("id","high"+i);
@@ -52,17 +52,17 @@ function listsSkill(ev)
         highRad.setAttribute("name","tRadio"+i);
         highRad.setAttribute("value","High");
         
-        var high =document.createTextNode("High");
+     
         
         //Appends each skill and associated radio buttons to form
         skillForm.appendChild(skillName);
         skillForm.appendChild(skillHid);
         skillForm.appendChild(lowRad);
-        skillForm.appendChild(low);
+        // skillForm.appendChild(low);
         skillForm.appendChild(medRad);
-        skillForm.appendChild(med);
+        // skillForm.appendChild(med);
         skillForm.appendChild(highRad);
-        skillForm.appendChild(high);
+        // skillForm.appendChild(high);
         skillForm.appendChild(document.createElement("P"));
 
         

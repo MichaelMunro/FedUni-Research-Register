@@ -5,10 +5,13 @@ require_once "PHP/default.php";
 <!doctype html>
 
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="css/style2.css">
-   </head>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./css/master.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./css/class numbered.css">
+		<link rel="stylesheet" href="./css/media.css">
+	</head>
    <body>
       <title>View Profile</title>
       <?php

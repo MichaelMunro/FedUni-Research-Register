@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
 /* ******************************BASE****************************** */
 
@@ -5,6 +9,16 @@
     box-sizing: border-box;
 }
 /* body { body styles. //mainly base format and background  */
+<<<<<<< HEAD
+=======
+=======
+/* BASE */
+* {
+    box-sizing: border-box;
+}
+/* body { /* body styles. mainly base format and background */ */
+>>>>>>> master
+>>>>>>> master
   /* margin: 0px; */
   /* padding: 10px; */
   /* font-family: Georgia, "Times New Roman", Times, serif; */
@@ -23,18 +37,38 @@
   /* transform: translate(-50%, -50%); */
   left: 33.5%;
 }
+<<<<<<< HEAD
 /* .container#reg { /* registration form container */ /*
+=======
+<<<<<<< HEAD
+/* .container#reg { /* registration form container */ /*
+=======
+.container#reg { /* registration form container */
+>>>>>>> master
+>>>>>>> master
     border-radius: 5px;
 	background: linear-gradient(#dbdbdb, #f7f7f7);
     padding: 10px;
 	width: 750px;
+<<<<<<< HEAD
 	height:100%;
+=======
+<<<<<<< HEAD
+	height:100%;
+=======
+	/* height:100%; */
+>>>>>>> master
+>>>>>>> master
 	display:block;
 	position:absolute;
 	overflow:visible;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 } */
 
 .navbar{
@@ -60,10 +94,28 @@ button, input[type=button], input[type=submit], input[type=reset]{ /*button styl
 }
 button:hover{
 	background-color:#000000;
+<<<<<<< HEAD
+=======
+=======
+}
+
+/* ELEMENTS */
+
+button, input[type=button], input[type=submit], input[type=reset]{ button styles
+  width: 50px;
+  /* background: linear-gradient(#eeeeee, #80c6ff); */
+  border-color:#068;
+  border-radius: 15px;
+>>>>>>> master
+>>>>>>> master
 }
 .logo{
 	/* background-image: url("/img/logo.jpg"); */
 	/* background-color: #cccccc; */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 	/* padding-top:10px; */
 	padding: 5px;
 	margin-top:2px;
@@ -71,12 +123,23 @@ button:hover{
 	float:left;
 	height:50px;
 	width:230px;
+<<<<<<< HEAD
+=======
+=======
+	height:30px;
+	width:150px;
+>>>>>>> master
+>>>>>>> master
 	border:0;
 }
 #space{
 	padding: 10px;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
 /* ******************************LINKS****************************** */
 /* a:link { */
@@ -85,6 +148,18 @@ button:hover{
 /* a:visited { */
 	/* color: #339933; /*green*/ 
 /* } */
+<<<<<<< HEAD
+=======
+=======
+/* LINK */
+a:link {
+	color: #cc0000; /*red*/
+}
+a:visited {
+	color: #339933; /*green*/
+}
+>>>>>>> master
+>>>>>>> master
 a:hover {
 	color: #000000; /*black*/
 }
@@ -92,6 +167,10 @@ a:active {
 	color: #99cc33; /*greenish*/
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
 /* ******************************REQUIRED FIELDS****************************** */
 
@@ -103,6 +182,12 @@ input {
 	border: 1px inset black;
 	/* background-color: #000000; */
 }
+<<<<<<< HEAD
+=======
+=======
+/* REQUIRED FIELDS */
+>>>>>>> master
+>>>>>>> master
 input:invalid {
 	border-style:solid;
 	border-color: #ff0000;
@@ -125,13 +210,25 @@ input:valid {
 } */
 input:required {
   /* border-color: #800000; */
+<<<<<<< HEAD
 	border-width: 1px;
+=======
+<<<<<<< HEAD
+	border-width: 1px;
+=======
+	border-width: 2px;
+>>>>>>> master
+>>>>>>> master
 	/* background-color: #e0eef9; */
 	/* background-color: #7e7c84; */
 	color: #1d1d1d;
 }
 input:hover{
 	background-color: #e0eef9;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 }
 input:focus {
     border: 2px solid #555;
@@ -141,10 +238,25 @@ select {
 }
 
 /* ******************************TABLES****************************** */
+<<<<<<< HEAD
+=======
+=======
+	
+}
+
+
+
+/*** FORMS ***/
+>>>>>>> master
+>>>>>>> master
 
 .table {
     display:table;
     text-align:center;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 	/* position: absolute;  */
 	width: 450px;
 	/* height: 180px; */
@@ -172,11 +284,27 @@ select {
 	/* overflow-x: auto; */
 	-webkit-overflow-scrolling: touch;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
+<<<<<<< HEAD
+=======
+=======
+	position: absolute; 
+	width: 450px;
+	height: 180px;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+>>>>>>> master
+>>>>>>> master
 }
 .cell {
     display:table-cell;
     vertical-align:middle;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
 
 /* ******************************FORMS****************************** */
@@ -216,4 +344,44 @@ form#reg { /* reg form style */
 
 
 /* ****************************** ****************************** */
+<<<<<<< HEAD
+=======
+=======
+form.login { /* log-in form style */
+    display:inline-block;
+    border:2px solid black;
+	border-color:#068;
+	border-radius: 7px;
+    width: 450px;
+    padding:50px 0;
+}
+form.reg { /* reg form style */
+	width:730px; 
+	padding:15px;
+	border: 2px solid black;
+	border-color: #068;
+}
+
+/* PENDING!!!!! */
+.form#form0{
+	text-align: left;
+	width: 600px;
+}
+
+
+input {
+    margin-bottom:15px;
+	border-radius:4px;
+	box-sizing: border-box;
+	/* background-color: #000000; */
+}
+input:focus {
+    border: 2px solid #555;
+}
+select {
+	border-radius: 4px;
+}
+
+>>>>>>> master
+>>>>>>> master
 

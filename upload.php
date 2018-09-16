@@ -21,7 +21,7 @@ $file_size=$_FILES['file']['size'];
 $file_error=$_FILES['file']['error'];
 $file_extension=explode('.',$file_name);
 $file_real_ext=strtolower(end($file_extension));
-$allowed=array('jpg','jpeg','png','pdf','docx');
+$allowed=array('jpg','jpeg','png','pdf','docx','xlsx','doc','gif');
 if(in_array($file_real_ext,$allowed))
 {
 if($file_error==0)

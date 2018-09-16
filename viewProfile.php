@@ -173,6 +173,31 @@ require_once "PHP/default.php";
 
 
                 ?>
+		    
+		    
+		    <?php 
+		$query = "SELECT Files.file_name,Files.file_location FROM Files INNER JOIN User_Files ON Files.file_id=User_Files.file_id WHERE User_Files.user_id = ?;";
+		
+								$stmt= mysqli_prepare($conn,$query);
+								mysqli_stmt_bind_param($stmt,"d",$user_id);
+
+								$success = mysqli_stmt_execute($stmt);
+								$results = mysqli_stmt_get_result($stmt);
+				                                   
+							
+echo "<h1>Files</h1>";
+echo "<table cellspacing='50'><center>";
+		
+while($row1 = mysqli_fetch_assoc($results))
+	
+{
+	$fname=$row1['file_name'];
+$path=	$row1['file_location'];				
+echo "<tr><td>".$row1['file_name']."</td><td>"."<button><a download='$fname' href='$path'  style='text-decoration:none;'>download</a></button></td></tr>";
+	
+}
+echo "</center></table>";
+								?>
             </div>
             <div class="c14791">Footer
             </div>

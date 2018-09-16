@@ -314,6 +314,7 @@ require_once "PHP/default.php";
 							</div>
 						</div>
 						
+<<<<<<< HEAD
 						<div id="bootstable-row" class="row">
 							<div id="bootstable-cell" class="cell c12511">
 							</div>
@@ -360,4 +361,69 @@ require_once "PHP/default.php";
 		foot
 		</footer>
 	</body>
+=======
+					 </div>
+				  </div>
+				  <div id="bootstable-row" class="row">
+					 <div id="bootstable-cell" class="cell c12511">
+					 </div>
+				  </div>
+			   </div>
+			   
+			   
+			                   <div id="files-tab" data-tab-content="1" class="tab-content">
+                    <div id="tab-title" class="c15657">Files</div>
+                    <div id="tab-row" class="row">
+                        <div id="form-cell" class="cell">
+                            <form class="form" action = "upload.php" method = "POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file" id="file" name="file" onChange="if( document.getElementById('file').files.length>0)document.getElementById('upload').disabled=false;"/ >
+                                <div class="form-group">
+                                    <button type="submit" class="button" name="submit" id="upload" disabled>upload</button>
+                                </div>
+								</form>
+								<?php
+								$query = "SELECT Files.file_name,Files.file_location FROM Files INNER JOIN User_Files ON Files.file_id=User_Files.file_id WHERE User_Files.user_id = ?;";
+		
+$stmt= mysqli_prepare($conn,$query);
+mysqli_stmt_bind_param($stmt,"d",$user_id);
+$success = mysqli_stmt_execute($stmt);
+$results = mysqli_stmt_get_result($stmt);
+				                                   
+							
+	echo "<h1>Files</h1>";
+echo "<table cellspacing='50'><center>";
+		
+while($row1 = mysqli_fetch_assoc($results))
+	
+{
+	$fname=$row1['file_name'];
+$path=	$row1['file_location'];				
+echo "<tr><td>".$row1['file_name']."</td><td>"."<button><a download='$fname' href='$path' style='text-decoration:none;'>download</a></button></td></tr>";
+	
+}
+echo "</center></table>";						
+				    ?>
+                            
+                        </div>
+                    </div>
+                    <div id="bootstable-row" class="row">
+                        <div id="bootstable-cell" class="cell c12511">
+                        </div></div>
+                    </div>
+			   			   
+			
+			   
+			 
+			<div class="c14791"> <!--footer -->
+			</div>
+		 </div>
+	  </div>
+	  <script>var items = document.querySelectorAll('#iitw8i');
+		 for (var i = 0, len = items.length; i < len; i++) {
+		   (function(){var t,e=this,a="[data-tab]",n=document.body,r=n.matchesSelector||n.webkitMatchesSelector||n.mozMatchesSelector||n.msMatchesSelector,o=function(){var a=e.querySelectorAll("[data-tab-content]")||[];for(t=0;t<a.length;t++)a[t].style.display="none"},i=function(n){var r=e.querySelectorAll(a)||[];for(t=0;t<r.length;t++){var i=r[t],s=i.className.replace("tab-active","").trim();i.className=s}o(),n.className+=" tab-active";var l=n.getAttribute("href"),c=e.querySelector(l);c&&(c.style.display="")},s=e.querySelector(".tab-active"+a);s=s||e.querySelector(a),s&&i(s),e.addEventListener("click",function(t){var e=t.target;r.call(e,a)&&i(e)})}.bind(items[i]))();
+		 }
+	  </script>
+   </body>
+>>>>>>> master
 <html>
